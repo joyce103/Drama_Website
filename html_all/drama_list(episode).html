@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    .flexslider carousel img {
+        width: 80%;
+        height: 80%;
+    }
+
+    .list_cate {
+        /*        border: 1px solid;*/
+
+        height: 50px;
+        margin-top: 0px;
+        margin-left: 350px;
+
+    }
+
+    .cate_mem {
+        float: left;
+        width: 100px;
+        font-size: 20px;
+        margin-left: 60px;
+
+    }
+
+    .cate_mem p {
+        color: #4a3d34;
+        font-style: normal;
+        margin-top: 0px;
+        width: 80px;
+        text-align: center;
+    }
+
+    .list_each {
+        float: left;
+    }
+
+</style>
+
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/list.css">
+    <link rel="stylesheet" href="../woocommerce-FlexSlider-690832b/flexslider.css" type="text/css">
+    <title>劇荒了嗎</title>
+    <script src="../_js/jquery.min.js"></script>
+    <script src="../woocommerce-FlexSlider-690832b/jquery.flexslider.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                animationLoop: false,
+                itemWidth: 400,
+                itemMargin: 5
+            });
+        });
+
+        $(document).ready(function() {
+            $('#ten').click(function() {
+                $('.ten').show();
+                $('.twenty').hide();
+                $('.thirty').hide();
+                $('.many').hide();
+                $('#ten').css("background-color","#ad9a93").css("border-radius","5px");
+                $('#twenty').css("background-color","none").css("border-radius","5px");
+                $('#thirty').css("background-color","none").css("border-radius","5px");
+                $('#many').css("background-color","none").css("border-radius","5px");
+             
+            });
+            $('#twenty').click(function() {
+                $('.ten').hide();
+                $('.twenty').show();
+                $('.thirty').hide();
+                $('.many').hide();
+                $('#ten').css("background-color","none").css("border-radius","5px");
+                $('#twenty').css("background-color","#ad9a93").css("border-radius","5px");
+                $('#thirty').css("background-color","none").css("border-radius","5px");
+                $('#many').css("background-color","none").css("border-radius","5px");
+            });
+            $('#thirty').click(function() {
+                $('.ten').hide();
+                $('.twenty').hide();
+                $('.thirty').show();
+                $('.many').hide();
+                $('#ten').css("background-color","none").css("border-radius","5px");
+                $('#twenty').css("background-color","none").css("border-radius","5px");
+                $('#thirty').css("background-color","#ad9a93").css("border-radius","5px");
+                $('#many').css("background-color","none").css("border-radius","5px");
+            });
+            $('#many').click(function() {
+                $('.ten').hide();
+                $('.twenty').hide();
+                $('.thirty').hide();
+                $('.many').show();
+                $('#ten').css("background-color","none").css("border-radius","5px");
+                $('#twenty').css("background-color","none").css("border-radius","5px");
+                $('#thirty').css("background-color","none").css("border-radius","5px");
+                $('#many').css("background-color","#ad9a93").css("border-radius","5px");
+            });
+
+
+            //宣告問題陣列
+            var ask = [
+                [
+                    "<h3>Q1:故事類型</h3>",
+                    "<p>A:美食</p>",
+                    "<p>A:職人</p>",
+                    "<p>A:旅遊</p>",
+                    "<p>A:其他</p>",
+                    "<h3>Q2:集數</h3>",
+                    "<p>A:1-10</p>",
+                    "<p>A:11-20</p>",
+                    "<p>A:20-40</p>",
+                    "<p>A:40以上</p>"
+                ],
+                [
+                    "<h3>Q1:戲劇背景</h3>",
+                    "<p>A:青春校園</p>",
+                    "<p>A:都市職場</p>",
+                    "<p>A:鄉村休閒</p>",
+                    "<p>A:古裝</p>",
+                    "<p>A:奇幻</p>",
+                    "<h3>Q2:男女主角關係</h3>",
+                    "<p>A:學長學妹</p>",
+                    "<p>A:姊弟戀</p>",
+                    "<p>A:大叔戀</p>",
+                    "<p>A:其他</p>"
+                ],
+                [
+                    "<h3>Q1:分級制度</h3>",
+                    "<p>A:普遍級</p>",
+                    "<p>A:保護級</p>",
+                    "<p>A:輔12級</p>",
+                    "<p>A:輔導級</p>",
+                    "<p>A:限制級</p>",
+                    "<h3>Q2:請選擇類型</h3>",
+                    "<p>A:真人真事</p>",
+                    "<p>A:小說改編</p>",
+                    "<p>A:其他</p>"
+                ]
+
+            ]
+            //宣告隨機亂數讓每次的問題都不同
+            var Q = Math.floor((Math.random() * 3) + 0);
+            //宣告jQ函數
+            var $member_data = $('#member_data'); //頭像
+            var $menu_data = $('#menu_data'); //左邊選單
+            var $sort = $('#sort'); //選單分類
+            var $sort_2 = $('#sort_2'); //選單分類分支
+            var $q = $('#question');
+            //判斷div是否有顯示有顯示true沒顯示false
+            var member = false;
+            var menu = false;
+            var sort = false;
+            var question = false;
+            //最一開始將沒有要顯示的div隱藏
+            $('.four').hide();
+            $('#member_data').hide();
+            $('#menu_data').hide();
+            $('#sort_2').hide();
+            $('#question').hide();
+            var all = [{
+                    src: "01/1-7.jpeg",
+                    text: "劇名：你的孩子不是你的孩子<br>導演：陳慧翎<br>編劇：蔣友竹、簡士耕、洪茲盈、夏康真、費工怡、馬千代<br>演員：柯素雲、鍾欣凌、尹馨、謝瓊煖、葉全真、劉子銓、劉修甫、王淨、王渝萱、吳兆絃<br>劇情大綱：改編自作家吳曉樂的同名小說，由六位編劇將書中的九個故事改編成五個單元。書中深刻描述家庭中，因追逐分數的考試製度而扭曲的親子關係，以及單一的成功價值觀忽略了個體差異性的高壓社會。本劇為公共電視台時隔12年，繼‬《危險心靈》後推出的教育主題戲劇，取材自吳曉樂作家的同名小說，以其中的5篇故事改編為〈茉莉的最後一天〉、〈媽媽的遙控器〉、〈必須過動〉、〈孔雀〉與〈貓的孩子〉五個單元。<br>",
+                    href: "01/1-7.html"
+                },
+                {
+                    src: "01/1-8.jpeg",
+                    text: "劇名：妖怪人間<br>導演：馬毓廷<br>編劇：馬毓廷、鄒宛臻、張志威、吳俊祐、鄭智文、陳世杰<br>演員：石知田、黃騰浩、連俞涵、陳以文、蕭永裕、伊昭徳、伊正、吳昆達<br>劇情大綱：自古以來，就有某些生物存在於這片土地，而且時間比人類還要更加長久，我們統稱他們為「妖怪」，為了讓人類與妖怪能和平共存，因此成立「特殊住民協調處」作為雙方的溝通橋標。 一名剛加入特民處的文書專員一鹿計，原應負責記錄妖怪動向的他，卻在與妖怪頻繁的互動後，開始對妖怪們產生強烈的同情心。並某次出任務時，意外發現自身竟然也擁有特殊能力，鹿計開始畏懼，並且質疑做為妖怪與人類橋梁特民處的存在... 他該如何在妖怪與人類兩個不同的族群中做出選擇...<br>",
+                    href: "01/1-8.html"
+                },
+                {
+                    src: "05/5-5.jpeg",
+                    text: "劇名：戀愛可以持續到天長地久<br>導演：田中健太、福田亮介、金子文紀<br>編劇：金子亞里沙<br>演員：佐藤健、上白石萌音、每雄克哉、吉川愛、渡邊圭祐<br>劇情大綱：佐倉七瀨（上白石萌音飾）與醫師天堂浬（佐藤健飾）命運般地邂逅，讓她因為對天堂的憧憬，決定走上醫學之路。5年後七瀨成為護理師，終於再度見到天堂浬時，竟發現他和印象中的溫柔天差地別，是個冷酷毒舌、被稱為「魔王」的醫師！面對人見人怕的天堂，七瀨卻無論在職場或情場都勇往直前、全力以赴，被同事們戲稱為「勇者」，也逐漸融化了天堂的心。<br>",
+                    href: "05/5-5.html"
+                },
+                {
+                    src: "05/5-6.jpeg",
+                    text: "劇名：法醫女王<br>導演：塚原亞由子、竹村謙太郎、村尾嘉昭<br>編劇：野木亞紀子<br>演員：石原里美、井浦心、窪田正孝<br>劇情大綱：在日本厚生勞動省新設立的「UDI Lab」英語：『Unnatural Death Investigation Laboratory，（簡稱UDI Lab）』裡，由法醫解剖人們在不自然死亡的屍體上找出其真正死因的故事。<br>",
+                    href: "05/5-6.html"
+                },
+                {
+                    src: "05/5-4.jpeg",
+                    text: "劇名：生死接線員<br>導演：邱皓洲、王傳宗<br>編劇：劉梓潔、黃千芸、周曉鶯、鄧凱綸、洪裕淵、呂逸瑄、林昀姍、陳定寧、黃國甦、陳牧勻、吳可師<br>演員：曾少宗、劉倩妏、李杏、單承矩、邱震瀚<br>劇情大綱：在他們的工作領域中，唯有先死，後纔能有活路，「死去活來」是他們奉行的工作圭臬－－他們是器官捐贈協調師。利恆醫院護理師溫雨讀（劉倩妏飾），在接生完第一千個寶寶後，轉換工作跑道進入器官捐贈移植小組，也結識了移植外科中，行為像落入地球的外星艦長－－江君皓（曾少宗飾）醫師。利恆的器官協調小組經歷了一次次棘手的案例，看見生命的破滅與重生。<br>",
+                    href: "05/5-4.html"
+                },
+                {
+                    src: "09/9-6.jpeg",
+                    text: "劇名：CODE浮士德遊戲<br>導演：詹大為<br>編劇：涂芳祥、藍夢荷、邵慧婷<br>演員：吳慷仁、謝沛恩、賈孝國、張翰<br>劇情大綱：Alex（吳慷仁飾）只是一個平凡且工作能力平平的銀行理財專員，因想讓未婚妻（謝沛恩飾）以後過上有錢的好日子，聽信了公司的內線消息，卻一夜之間賠掉將近一半的存款積蓄，此時出現了謎樣的APP「CODE」，此APP宣稱可以實現任何願望，Alex開始胡亂許願，但也要完成CODE指定的任務「還願」，隨著願望越大，任務也越困難複雜，最後卻引發了一連串的犯罪事件。<br>",
+                    href: "09/9-6.html"
+                },
+                {
+                    src: "09/9-3.jpeg",
+                    text: "劇名：李屍朝鮮<br>導演：金成勳<br>編劇：金銀姬<br>演員：朱智勛、柳承龍、裴斗娜、金相浩、陳善奎<br>劇情大綱：6世紀末日本入侵朝鮮數年後的朝鮮王朝，王世子李蒼想見臥病在床十多天的父王，卻一直被宮人阻撓，直覺宮中有不可告人秘密。為追尋真相，李蒼微服暗訪醫治其父王的醫員，卻發現一場恐怖瘟疫正全國擴散，染疫的人會死而復活，變得非常嗜血及人肉，整個朝鮮正陷入一場滅亡危機。<br>",
+                    href: "09/9-3.html"
+                },
+                {
+                    src: "08/8-3.jpeg",
+                    text: "劇名：秘密森林<br>導演：安吉鎬、柳濟元<br>編劇：李秀妍<br>演員：曹承佑、裴斗娜、李浚赫、劉在明、申惠善、李奎炯<br>劇情大綱：講述失去感情的檢察官黃時穆（曹承佑飾）與正義的警察（裴斗娜飾）一同揭開檢察廳內部的秘密，捕捉真正犯罪的故事。<br>",
+                    href: "08/8-3.html"
+                },
+                {
+                    src: "05/5-2.jpeg",
+                    text: "劇名：LIFE<br>導演：洪鍾燦、林賢旭<br>編劇：李秀妍<br>演員：曹承佑、李棟旭、元真兒、李奎炯、劉在明、文素利<br>劇情大綱：相國大學醫院急診醫療中心專科醫生藝鎮宇（李棟旭飾），是一名注重醫德的醫生。相國大學醫院總括社長具勝孝（曹承佑飾），他是認爲數據高於一切的冷酷的人物。小兒科負責人李晚霞（元真兒飾）。相國大學胸外科中心主任周景文（劉在明飾），他對胸外科有自信心，並有着醫生的使命感，和新上任的相國大學醫院總括社長具勝孝就醫院的運營方式等對立。相國大學神經外科中心主任吳世華（文素利飾），是在醫生父母培養下的金鑰匙，她以自己的職業和能力爲傲，充滿野心想成爲業界No.1.藝鎮宇的弟弟藝善宇（李奎炯飾），他是在健康保險審查委員會評價院工作的整形科專門醫生，小時候爸爸因爲車禍去世，他腿部有殘疾。<br>",
+                    href: "05/5-2.html"
+                },
+                {
+                    src: "04/4-3.jpeg",
+                    text: "劇名：Ｗ兩個世界<br>導演：鄭大胤<br>編劇：宋在貞<br>演員：李鐘碩、韓孝周<br>劇情大綱：現實世界中的女醫生吳妍珠（韓孝周飾）偶然地進入了人氣漫畫《W》的世界，與漫畫主人公姜哲（李鍾碩飾）相遇後發生往來現實和虛幻中的懸疑愛情故事。<br>",
+                    href: "04/4-3.html"
+                },
+                {
+                    src: "04/4-4.jpeg",
+                    text: "劇名：大力女子都奉順<br>導演：李亨民<br>編劇：白美瓊<br>演員：朴寶英、朴炯植、金志洙<br>劇情大綱：一個怪力女子都奉順（朴寶英飾）和一個獨一無二的男子安敏赫（朴炯植飾）相愛併發生橫衝直撞的浪漫愛情喜劇故事。是一部幻想、喜劇和動作結合的有趣故事，都奉順擁有誰都超越不了的怪力，被她打了至少需要62周才能痊癒。<br>",
+                    href: "04/4-4.html"
+                },
+                {
+                    src: "03/3-4.jpeg",
+                    text: "劇名：我的ID是江南美人<br>導演：崔成範<br>編劇：崔秀英<br>演員：林秀香、車銀優、趙宇麗、郭東延<br>劇情大綱：改編自同名網絡漫畫（Webtoon），講述從小因爲長相醜陋而受欺凌的姜美來（林秀香飾）在整容後，以爲能夠過上新生活，卻在進入大學後經歷與夢想中完全不同的挫敗，在過程中找到真愛的故事。<br>",
+                    href: "03/3-4.html"
+                },
+                {
+                    src: "03/3-7.jpeg",
+                    text: "劇名：花樣男子<br>導演：石井康晴、山室大輔、片山修<br>編劇：宅間孝行<br>演員：松本潤、井上真央、小栗旬、松田翔太、阿部力、松島菜菜子<br>劇情大綱：身背父母的期望，貧窮女牧野杉菜（井上真央飾）轉入了超級貴族學校英德學院，學生們被奢侈品環繞，上下等級懸殊不說，更讓本來就和同學們格格不入的杉菜鬱悶的是，學院整個被F4四人組控制，道明寺司（松本潤飾）、花澤類 （小栗旬飾）、西門総二郎（松田翔太飾）和美作明（阿部力飾），但凡惹到F4的人都難逃被死整的悲慘命運。 某日，實在看不過去道明寺飛揚跋扈的模樣，杉菜當場與其起了衝突，翌日便遭到了“紅紙條”的報復，危急時刻，杉菜屢屢被花澤類救下，杉菜鼓起勇氣向道明寺發起宣戰，與崇拜的姐姐椿（松島菜菜子飾）性情相似的杉菜的不屈不撓在道明寺的心中泛起了微瀾，他的心不知不覺被這個如雜草般頑強的女子佔據。 對衝動魯莽的道明寺無感，杉菜早已傾心於類，而類真正喜歡的卻是藤堂靜（佐田真由美飾），剪不斷理還亂的愛恨糾葛就此展開。<br>",
+                    href: "03/3-7.html"
+                },
+                {
+                    src: "02/2-1.jpeg",
+                    text: "劇名：夫婦的世界<br>導演：毛完日 <br>編劇：朱賢<br>演員：金喜愛、朴海俊、韓素希<br>劇情大綱：一對看似相愛的夫妻因背叛而終結愛情，最後彼此陷入仇恨漩渦的故事。池善雨（金喜愛飾）是高山市家庭愛心醫院副院長，擁有帥氣的導演老公李泰伍（朴海俊飾）和懂事的兒子李俊英，家庭看起來十分美滿。然而有天，善雨卻在丈夫的圍巾上發現可疑的長髮，抽絲剝繭下發現丈夫不為人知的秘密。<br>",
+                    href: "02/2-1.html"
+                },
+                {
+                    src: "02/2-2.jpeg",
+                    text: "劇名：犀利人妻<br>導演：徐輔軍<br>編劇：楊海薇、王珮華<br>演員：隋棠、溫昇豪、朱芯儀、宥勝<br>劇情大綱：溫瑞凡（溫昇豪飾）與謝安真（隋棠飾）育有一女，婚姻原本是幸福美滿，卻因第三者的介入破壞了原有的幸福。瑞凡深深愛上了安真的遠房親戚薇恩。安真要如何面對她婚姻中這突如其來的改變？<br>",
+                    href: "02/2-2.html"
+                },
+                {
+                    src: "04/4-8.jpeg",
+                    text: "劇名：命中注定我愛你<br>導演：陳玉珊<br>編劇：陳玉珊<br>演員：陳喬恩、阮經天、陳楚河、白歆惠<br>劇情大綱：一對男女紀存希（阮經天飾）、陳欣怡（陳喬恩飾）在豪華旅行中共度一夜不小心懷孕後，經歷了不情願的婚姻，卻從中領悟到命運般的愛情之故事。<br>",
+                    href: "04/4-8.html"
+                },
+                {
+                    src: "04/4-9.jpeg",
+                    text: "劇名：我可能不會愛你<br>導演：班迪<br>編劇：Bandit Thongdee<br>演員：亞瑞克·阿莫蘇帕西瑞、莫茶诺·欣彩萍翩<br>劇情大綱：萍慕和纳坤是青梅竹馬的好朋友，萍慕在一家鞋子公司，平时負責销售管理，和賣場關係緊密。纳坤是曼谷航空的地勤經理，两个人平时工作都很忙，靠短信電話等聯繫，但是兩家人關係很好，總是互相送東西。隨著年龄的增長，萍慕作为大齡女青年開始面臨结婚難題，她之前的男友查姆提出分手追求公司其他同事，而出現在她身邊的是助理尼克，後來還有大學时候的前男友瑪汶，而纳坤也和公司的同事米琪開始了戀情，可是隨著時間的推移，兩个人都發現生命中最重要的好像就是這個青梅竹馬。 <br>",
+                    href: "04/4-9.html"
+                },
+                {
+                    src: "07/7-4.jpeg",
+                    text: "劇名：鬼滅之刃<br>導演：外崎春雄<br>編劇：ufotable<br>作者：吾峠呼世晴<br>劇情大綱：日本大正時代，竈門炭治郎繼承亡父留下的炭業工作，支撐一家七口，在山上過著樸實生活。某日他做完生意返家後發現全家遭鬼王鬼舞辻無慘屠殺，而大妹禰豆子變成了鬼。鬼殺隊富岡義勇見狀後本欲斬殺禰豆子，但他在見識到兄妹倆的親情後，推薦炭治郎拜鱗瀧左近次為師，經過兩年訓練，炭治郎學會對抗鬼的呼吸法與劍術，通過考驗加入鬼殺隊。<br>",
+                    href: "07/7-4.html"
+                },
+                {
+                    src: "08/8-1.jpeg",
+                    text: "劇名：紳探<br>導演：鄧科、高琮凱<br>編劇：陸宣、貢小白<br>演員：白宇、尤靖茹<br>劇情大綱：三十年代的上海，歌舞昇平、紙醉金迷，當人們沉醉在睡夢中的時候，一樁樁離奇的案件在城市的某個角落悄悄發生。剛從警校畢業的美麗女子秦小曼懷著成為一名出色警探的理想，來到英租界，住進了沙利文公寓，與屢破奇案、名聲大噪的警局探案顧問--神探羅非，成了鄰居和同事。開始兩個人性格不合，一見面就成了「冤家」，卻在陰差陽錯下不得不一起聯手破案。<br>",
+                    href: "08/8-1.html"
+                },
+                {
+                    src: "08/8-5.jpeg",
+                    text: "劇名：痞子英雄<br>導演：蔡岳勳、高林豹<br>編劇：陳慧如、吳洛纓<br>演員：周渝民、趙又廷、陳意涵、張鈞甯、修杰楷、王傳一、隋棠<br>劇情大綱：痞子與英雄兩個不斷與黑暗對抗，同時點燃光明的警察，憑藉著心中唯一的正義，維持著海港城這座臨海城市、美好而光亮的清晨。痞子與英雄在一場警匪追逐的混戰中，荒謬初會。<br>",
+                    href: "08/8-5.html"
+                },
+                {
+                    src: "09/9-7.jpeg",
+                    text: "劇名：怪奇物語<br>導演：艾莉森·塔特拉克<br>編劇：杜夫兄弟、肖恩·利維、丹·科恩、卡爾·加達賽克、辛蒂·荷蘭、麥特·陶諾爾、布萊恩·萊特<br>演員：薇諾娜·瑞德、大衛·哈伯、芬恩·沃夫哈德、米莉·芭比·布朗<br>劇情大綱：發生在1980年代，位於美國印第安納州的一座虛構城鎮霍金斯鎮（英語：Hawkins），鎮上的一座美國能源部名下的政府實驗室，涉及著跟超常現象跟超自然現象有關的機密實驗，當中還包含許多不為人知的人體實驗樣本。實驗人員在無意間開啟一條通往稱作「顛倒世界」（英語：Upside Down）的另一維度之傳送門，該維度所造成的危害隨著時間推及而波及到霍金斯鎮上的市民。<br>",
+                    href: "09/9-7.html"
+                },
+                {
+                    src: "01/1-3.jpeg",
+                    text: "劇名：花千骨<br>導演：林玉芬、高林豹、梁勝權<br>編劇：Fresh果果、饒俊<br>演員：霍建華、趙麗穎、馬可、張丹峰、蔣欣、李純、徐海喬<br>劇情大綱：花千骨（趙麗穎 飾）曾經被長留上仙白子畫（霍建華 飾）所救，因此芳心暗許，長大之後，她千里迢迢前往長留仙山，想要找到當年的恩人。經過重重的考驗和比試，花千骨終於成爲了白子畫的座下弟子，然而她並不知道的是，自己命格詭異，註定要成爲白子畫的生死劫，而花千骨和白子畫兩人在相處的過程中，早已經產生了超越了師徒的感情。 墮仙夏紫薰（蔣欣 飾）亦深愛着白子畫，不願看到愛人爲花千骨白白送死的她企圖下毒殺死花千骨，沒想到最後中毒的卻是白子畫。爲了挽救白子畫的性命，花千骨想盡了一切方法，並且在無意之中獲得了洪荒之力，爲日後的悲劇埋下了伏筆。<br>",
+                    href: "01/1-3.html"
+                },
+                {
+                    src: "01/1-5.jpeg",
+                    text: "劇名：冰與火之歌-權力遊戲<br>導演：大衛·班紐夫、丹尼爾·威斯<br>編劇：大衛·貝尼奧夫、D·B·魏斯<br>演員：提利昂·蘭尼斯特、詹姆·蘭尼斯特、瑟曦·蘭尼斯特、丹妮莉絲·坦格利安、瓊恩·雪諾、珊莎·史塔克<br>劇情大綱：《權力遊戲》大致是根據小說《冰與火之歌》的故事線情節，故事背景設置於虛構的維斯特洛七王國及厄斯索斯大陸。該系列記錄了該領域貴族爭奪鐵王座的激烈王朝鬥爭，而其他家庭則為爭取獨立而鬥爭。它也在冰冷的北部和東面的厄斯索斯面臨更多的威脅。<br>",
+                    href: "01/1-5.html"
+                },
+                {
+                    src: "03/3-1.jpeg",
+                    text: "劇名：夏至未至<br>導演：韓洋<br>編劇：劉飛、劉辰光、施適<br>演員：陳學冬、鄭爽、白敬亭、夏梓桐<br>劇情大綱：立夏（鄭爽飾）和閨蜜七七考入淺川一中，認識了傳說中的傅小司（陳學冬飾）和陸之昂（白敬亭飾），隨着遇見等人的加入，正式拉開了屬於他們的青春美好的高中生活。畢業後，成人世界的門向他們敞開，每個人都過上了千差萬別的生活在離夏天最遠的地方，十年的光陰讓人發現，除了記憶外，什麼也不能永久，但他們都學會了愛和成長。<br>",
+                    href: "03/3-1.html"
+                },
+                {
+                    src: "03/3-6.jpeg",
+                    text: "劇名：一吻定情～LOVE IN TOKYO<br>導演：永田琴<br>編劇：三浦有為子<br>演員：古川雄輝、未來穗香<br>劇情大綱：在高中的入學典禮中，一年F班的相原琴子（未來穗香 飾）一直偷偷暗戀着一年A班的入江直樹（古川雄輝 飾）。在一天晚上收音機說將會有流星雨許願後，終於鼓起勇氣，寫了情書向直樹告白。不料卻換來直樹一句 “我討厭笨女人” 的無情的拒絕。並且被拒事情讓全班同學都知道，讓她非常難過 。打算從此忘記直樹的琴子，有一天新建的家卻因爲被流星砸到而毀。於是只好寄住在父親相原重雄學生時代的朋友家。沒想到，父親朋友竟然就是直樹的父親。這就意味着琴子要開始和直樹共處一家。琴子和直樹這對冤家，還有對直樹抱有強烈的嫉妒心，一心一意喜歡琴子的池澤金之助（山田裕貴 飾），到底能上演一段如何爆笑的青春之歌呢？<br>",
+                    href: "03/3-6.html"
+                },
+                {
+                    src: "05/5-8.jpeg",
+                    text: "劇名：夜班急診室<br>導演：Pierre Morel<br>編劇：Gabe Sachs、Jeff Judah<br>演員：伊恩·馬肯、吉爾·弗林特、肯·梁、布倫丹·費爾<br>劇情大綱：以德克薩斯州的聖安東尼奧紀念醫院為舞台，描寫一群於夜班急診室執勤的醫生們與其周遭人事物的故事。在這群夜班醫生裡，多半是退役軍醫或是相關經驗者。每當有事故發生，他們總在第一時間趕往現場，必要時更以戰地救援的經驗對患者施行處置。<br>",
+                    href: "05/5-8.html"
+                },
+                {
+                    src: "06/6-1.jpeg",
+                    text: "劇名：延禧攻略<br>導演：惠楷棟、溫德光<br>編劇：周末<br>演員：吳謹言、佘詩曼、秦嵐、聶遠、許凱、譚卓<br>劇情大綱：乾隆六年二月初二（公元1741年3月18日），包衣出身的魏瓔珞（吳謹言飾）為尋求親姐魏瓔寧死亡真相，入紫禁城為宮女，憑藉智慧成為富察皇后身邊的貼身宮女，富察皇后嫻於禮法，擔心瓔珞走上歧途，竭力給予她溫暖與幫助，在 感情上與她情同姊妹。在皇后的悉心教導下，魏瓔珞一步步成長為正直堅強的大宮女。後來富察皇后自殺身亡， 魏瓔珞發現皇后的死亡真相後，成為妃嬪，憑勇往直前的勇氣、機敏靈活的頭腦、寬廣博大的胸懷，為皇后報仇。同時也與乾隆從互相敵視到最終彼此理解、互相扶持，最終成為令懿皇后。<br>",
+                    href: "06/6-1.html"
+                },
+                {
+                    src: "06/6-6.jpeg",
+                    text: "劇名：江～戰國三公主<br>導演：伊勢田雅也<br>編劇：田渕久美子<br>演員：上野樹里、宮澤理惠、水川麻美<br>劇情大綱：江的母親為信長之妹・市。江（上野樹里飾）作為日本史上最有名的三姊妹（淺井三姊妹）中的幼妹出生，後成為幕府第二代將軍德川秀忠正室，女兒嫁予天皇成為中宮、長子為第三代將軍。然而江的一生都相當苦亂波瀾。經過二次城陷而父母雙亡，被當時擁有絕對權力的織田信長、豐臣秀吉和德川家康翻弄其人生，更有著三次的婚姻。最後，更與大姊・淀為了爭奪天下而互相敵對。深知戰國之世痛苦的江，不斷為天下太平而祈願著，最終於江戶城建立大奧。奠定了其後二百多年、和平繁榮的江戶時代基礎。<br>",
+                    href: "06/6-6.html"
+                },
+
+                {
+                    src: "06/6-7.jpeg",
+                    text: "劇名：蘭陵王<br>導演：鍾澍佳、周曉鵬<br>編劇：吳大偉、黃柔柔、陳小豪、孟芝<br>演員：馮紹峰、林依晨、陳曉東<br>劇情大綱：一千四百多年前，北朝戰亂不斷，北周宇文邕（陳曉東 飾）屢屢侵霸邊界，誓言要成為北朝的霸王。北齊在驍勇善戰的蘭陵王（馮紹峰 飾）帶領之下，抵禦強敵，築起一道堅實的城牆。蘭陵王在一次與北周的交戰中，意外闖入隱居在兩國邊境上擁有預知先機能力的巫咸後人村落。白山後人楊雪舞（林依晨 飾）被迫捲入兩軍爭亂，人稱「天女」。<br>",
+                    href: "06/6-7.html"
+                }
+
+
+
+
+
+            ];
+
+
+            //搜尋程式
+            var search = function() {
+                for (var i = 0; i < all.length; i++) {
+                    var $cw = $('<div class="list_each"><img class="img" src="05%25E9%2586%25AB%25E7%2599%2582%25E9%25A1%259E/5-6.png"><p class="content"></p><a href="" id="net"><h1>more</h1></a><div class="score"><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><div class="collection"><img src="../images/heart.png" /></div></div></div>');
+
+                    $cw.find('.img').attr('src', "all[i].src"); //尋找照片
+                    $cw.find('.content').text(all[i].text); //尋找內容
+                    $cw.find('#net').attr("href", "all[i].href"); //尋找more連結
+                    $('.drama_list').append($cw);
+                }
+
+            };
+            //search();
+
+            //搜尋程式
+            var update = function(key) {
+                search();
+                var $select = $('.list_each');
+                $select.hide();
+                for (var i = 0; i < all.length; i++) {
+                    if (all[i].text.indexOf(key) != -1) {
+                        console.log(all[i].text);
+                        $select.eq(i).show();
+                    }
+                }
+            };
+
+            //讀取input中的內容
+            $('.search>img').click(function() {
+                var $input = $('#input').val();
+                update($input);
+            });
+
+
+            //讀取自訂問答的選項
+
+
+            $('#question').click(function() {
+                for (var i = 0; i < ask[Q].length; i++) {
+                    //if (ask[Q][i].onclick) {
+                    console.log(ask[Q][i]);
+                    //}
+                }
+
+            });
+
+            //點擊頭像出現框框
+            $('.member').click(function() {
+                if (member) {
+                    $member_data.hide();
+                    member = false;
+                } else {
+                    $member_data.show();
+                    $menu_data.hide();
+                    menu = false;
+                    member = true;
+                    $q.hide('slideUp');
+                    question = false;
+                    //新增
+                    $('#signin').hide();
+                    s = false;
+                }
+            });
+
+            //點擊選單出現框框
+            $('.menu').click(function() {
+                if (menu) {
+                    $menu_data.hide();
+                    menu = false;
+                } else {
+                    $menu_data.show();
+                    $member_data.hide();
+                    menu = true;
+                    member = false;
+                    $q.hide('slideUp');
+                    question = false;
+                }
+            });
+
+            //分類點下去會延伸
+            $('#sort').click(function() {
+                if (sort) {
+                    $sort_2.hide();
+                    $sort.text('+分類');
+                    $sort_2.css('width', '0px');
+                    $sort_2.css('height', '0px');
+                    $menu_data.css('height', '160px');
+                    $menu_data.css('width', '100px');
+                    sort = false;
+                } else {
+                    $sort_2.show();
+                    $sort.text('-分類');
+                    $sort_2.css('width', '130px');
+                    $sort_2.css('height', '140px');
+                    $menu_data.css('height', '310px');
+                    $menu_data.css('width', '130px');
+                    sort = true;
+                }
+            });
+
+            //對話框程式
+            // $('#open').click(function() {
+            //     if (question) {
+            //         $q.hide('slideUp');
+            //         question = false;
+            //     } else {
+            //         $q.show('slideDown');
+            //         question = true;
+            //         $menu_data.hide();
+            //         menu = false;
+            //         $member_data.hide();
+            //         member = false;
+            //     }
+            // });
+
+            // //隨機問題
+            // for (var i = 0; i < ask[Q].length; i++) {
+            //     $q.append('<p>' + ask[Q][i] + '</p>');
+            // }
+
+            //新增
+            $('.btn').disabled = true;
+
+            //登入頁面
+            $('#signin').hide();
+            var $si = $('#si');
+            var $signin = $('#signin');
+            var s = false;
+            $('#si').click(function() {
+                $('#signin').show();
+                s = true;
+                $member_data.hide();
+                member = false;
+            });
+
+            $('.in').focus(function() {
+                if ($('#Name').val() == "" && $('#Code').val() == "") {
+                    $("#go").attr("disabled", true); //將登入按鈕改為不可用
+                } else if ($('#Name').val() != "" && $('#Code').val() != "") {
+                    $("#go").attr("disabled", false); //將登入按鈕改為可用
+                }
+            });
+
+            $('#cancel').click(function() {
+                $("#go").attr("disabled", true);
+                $('#signin').hide();
+                s = false;
+            });
+                        $('#go').click(function(e) {
+                $('#signin').hide();
+                s = false;
+                $('.comment_member p').text("達人 | " + $('#Name').val() + "說：");
+
+                e.preventDefault();
+                var source = {
+                    name: '',
+                    code: ''
+                };
+                source.name = $('#Name').val();
+                source.code = $('#Code').val();
+                if (localStorage) {
+                    localStorage.member = JSON.stringify(source);
+                }
+
+
+            });
+
+
+            if (localStorage.member) {
+                var m = JSON.parse(localStorage.member);
+                $('#Name').val(m.name);
+                $('#Code').val(m.code);
+                $('.comment_member p').text("達人 | " + $('#Name').val() + "說：");
+
+            }
+            //新增
+
+
+
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+    <!--header-->
+    <div class="header">
+        <div class="menu">
+            <img src="../images/open-menu.png" />
+        </div>
+        <div class="logo">
+            <p>劇荒了嗎</p>
+        </div>
+        <div class="search">
+
+            <img src="../images/search.png" />
+            <input class="search" id="input">
+        </div>
+        <!-- <div class="find" id="open">
+            <p>幫我找</p>
+            --------------------------------------    幫我找的對話框------------------------------------------------------
+            <div id="question" title="問題">
+            </div>
+        </div> -->
+
+        <div class="member">
+            <img src="../images/user.png" />
+        </div>
+    </div>
+
+    <!--    登入視窗-->
+    <div id="signin">
+        <p>帳號:</p><input id="Name" class="in">
+        <p>密碼:</p><input id="Code" class="in">
+        <button class="btn" id="go">登入</button>
+        <button class="btn" id="cancel">取消</button>
+    </div>
+
+    <!--    頭像下的框框-->
+    <div id="member_data">
+        <a href="../html_all/save.html">
+            <p>-我的收藏-</p>
+        </a>
+        <p id="si">-登入-</p>
+    </div>
+
+    <!--    左邊選單-->
+    <div id="menu_data">
+        <a href="../html_oringinal/drama_list%20(new).html">
+            <p>-最新</p>
+        </a>
+        <a href="../html_oringinal/drama_list%20(hot).html">
+            <p>-最熱</p>
+        </a>
+        <p id="sort">+分類</p>
+        <div id="sort_2">
+            <a href="drama_list(country).html">
+                <p>-國家</p>
+            </a>
+            <a href="drama_list(style).html">
+                <p>-類型</p>
+            </a>
+            <a href="drama_list(episode).html">
+                <p>-集數</p>
+            </a>
+            <a href="drama_list(start).html">
+                <p>-上映時間</p>
+            </a>
+        </div>
+        <a href="../html_oringinal/drama_list(best)%20.html">
+            <p>-精選</p>
+        </a>
+    </div>
+    <!--header-->
+
+
+    <div class="drama_list">
+
+        <div class="list_title">
+            <p>集數</p>
+        </div>
+        <div class="list_cate">
+            <div class="cate_mem">
+                <p id="ten">1-10</p>
+            </div>
+            <div class="cate_mem">
+                <p id="twenty">11-20</p>
+            </div>
+            <div class="cate_mem">
+                <p id="thirty">21-30</p>
+            </div>
+            <div class="cate_mem">
+                <p id="many">30up</p>
+            </div>
+        </div>
+
+        <!------------------------------------>
+
+
+        <!-----------------------------1-10------------------------------>
+        <div class="ten">
+
+
+            <div class="list_each">
+                <img src="01/1-7.jpeg">
+                <p>
+                    劇名：你的孩子不是你的孩子<br>導演：陳慧翎<br>編劇：蔣友竹、簡士耕、洪茲盈、夏康真、費工怡、馬千代<br>演員：柯素雲、鍾欣凌、尹馨、謝瓊煖、葉全真、劉子銓、劉修甫、王淨、王渝萱、吳兆絃<br>劇情大綱：改編自作家吳曉樂的同名小說，由六位編劇將書中的九個故事改編成五個單元。書中深刻描述家庭中，因追逐分數的考試製度而扭曲的親子關係，以及單一的成功價值觀忽略了個體差異性的高壓社會。本劇為公共電視台時隔12年，繼‬《危險心靈》後推出的教育主題戲劇，取材自吳曉樂作家的同名小說，以其中的5篇故事改編為〈茉莉的最後一天〉、〈媽媽的遙控器〉、〈必須過動〉、〈孔雀〉與〈貓的孩子〉五個單元。<br>
+                </p>
+                <h1><a href="01/1-7.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+
+            </div>
+
+            <div class="list_each">
+                <img src="01/1-8.jpg">
+                <p>
+                    劇名：妖怪人間<br>導演：馬毓廷<br>編劇：馬毓廷、鄒宛臻、張志威、吳俊祐、鄭智文、陳世杰<br>演員：石知田、黃騰浩、連俞涵、陳以文、蕭永裕、伊昭徳、伊正、吳昆達<br>劇情大綱：自古以來，就有某些生物存在於這片土地，而且時間比人類還要更加長久，我們統稱他們為「妖怪」，為了讓人類與妖怪能和平共存，因此成立「特殊住民協調處」作為雙方的溝通橋標。 一名剛加入特民處的文書專員一鹿計，原應負責記錄妖怪動向的他，卻在與妖怪頻繁的互動後，開始對妖怪們產生強烈的同情心。並某次出任務時，意外發現自身竟然也擁有特殊能力，鹿計開始畏懼，並且質疑做為妖怪與人類橋梁特民處的存在... 他該如何在妖怪與人類兩個不同的族群中做出選擇...<br>
+                </p>
+                <h1><a href="01/1-8.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="05/5-5.jpg">
+                <p>
+                    劇名：戀愛可以持續到天長地久<br>導演：田中健太、福田亮介、金子文紀<br>編劇：金子亞里沙<br>演員：佐藤健、上白石萌音、每雄克哉、吉川愛、渡邊圭祐<br>劇情大綱：佐倉七瀨（上白石萌音飾）與醫師天堂浬（佐藤健飾）命運般地邂逅，讓她因為對天堂的憧憬，決定走上醫學之路。5年後七瀨成為護理師，終於再度見到天堂浬時，竟發現他和印象中的溫柔天差地別，是個冷酷毒舌、被稱為「魔王」的醫師！面對人見人怕的天堂，七瀨卻無論在職場或情場都勇往直前、全力以赴，被同事們戲稱為「勇者」，也逐漸融化了天堂的心。<br>
+                </p>
+                <h1><a href="05/5-5.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="05/5-6.png">
+                <p>
+                    劇名：法醫女王<br>導演：塚原亞由子、竹村謙太郎、村尾嘉昭<br>編劇：野木亞紀子<br>演員：石原里美、井浦心、窪田正孝<br>劇情大綱：在日本厚生勞動省新設立的「UDI Lab」英語：『Unnatural Death Investigation Laboratory，（簡稱UDI Lab）』裡，由法醫解剖人們在不自然死亡的屍體上找出其真正死因的故事。<br>
+                </p>
+                <h1><a href="05/5-6.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="05/5-4.jpg">
+                <p>
+                    劇名：生死接線員<br>導演：邱皓洲、王傳宗<br>編劇：劉梓潔、黃千芸、周曉鶯、鄧凱綸、洪裕淵、呂逸瑄、林昀姍、陳定寧、黃國甦、陳牧勻、吳可師<br>演員：曾少宗、劉倩妏、李杏、單承矩、邱震瀚<br>劇情大綱：在他們的工作領域中，唯有先死，後纔能有活路，「死去活來」是他們奉行的工作圭臬－－他們是器官捐贈協調師。利恆醫院護理師溫雨讀（劉倩妏飾），在接生完第一千個寶寶後，轉換工作跑道進入器官捐贈移植小組，也結識了移植外科中，行為像落入地球的外星艦長－－江君皓（曾少宗飾）醫師。利恆的器官協調小組經歷了一次次棘手的案例，看見生命的破滅與重生。<br>
+                </p>
+                <h1><a href="05/5-4.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="09/9-6.jpg">
+                <p>
+                    劇名：CODE浮士德遊戲<br>導演：詹大為<br>編劇：涂芳祥、藍夢荷、邵慧婷<br>演員：吳慷仁、謝沛恩、賈孝國、張翰<br>劇情大綱：Alex（吳慷仁飾）只是一個平凡且工作能力平平的銀行理財專員，因想讓未婚妻（謝沛恩飾）以後過上有錢的好日子，聽信了公司的內線消息，卻一夜之間賠掉將近一半的存款積蓄，此時出現了謎樣的APP「CODE」，此APP宣稱可以實現任何願望，Alex開始胡亂許願，但也要完成CODE指定的任務「還願」，隨著願望越大，任務也越困難複雜，最後卻引發了一連串的犯罪事件。<br>
+                </p>
+                <h1><a href="09/9-6.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+        </div>
+        <!------------------------------------------------------------->
+
+
+
+
+        <!-----------------------------11-20-------------------------------->
+        <div class="twenty">
+            <div class="list_each">
+                <img src="09/9-3.png">
+                <p>
+                    劇名：李屍朝鮮<br>導演：金成勳<br>編劇：金銀姬<br>演員：朱智勛、柳承龍、裴斗娜、金相浩、陳善奎<br>劇情大綱：6世紀末日本入侵朝鮮數年後的朝鮮王朝，王世子李蒼想見臥病在床十多天的父王，卻一直被宮人阻撓，直覺宮中有不可告人秘密。為追尋真相，李蒼微服暗訪醫治其父王的醫員，卻發現一場恐怖瘟疫正全國擴散，染疫的人會死而復活，變得非常嗜血及人肉，整個朝鮮正陷入一場滅亡危機。<br>
+                </p>
+                <h1><a href="09/9-3.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+
+            </div>
+
+            <div class="list_each">
+                <img src="08/8-3.jpg">
+                <p>
+                    劇名：秘密森林<br>導演：安吉鎬、柳濟元<br>編劇：李秀妍<br>演員：曹承佑、裴斗娜、李浚赫、劉在明、申惠善、李奎炯<br>劇情大綱：講述失去感情的檢察官黃時穆（曹承佑飾）與正義的警察（裴斗娜飾）一同揭開檢察廳內部的秘密，捕捉真正犯罪的故事。<br>
+                </p>
+                <h1><a href="08/8-3.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="05/5-2.jpg">
+                <p>
+                    劇名：LIFE<br>導演：洪鍾燦、林賢旭<br>編劇：李秀妍<br>演員：曹承佑、李棟旭、元真兒、李奎炯、劉在明、文素利<br>劇情大綱：相國大學醫院急診醫療中心專科醫生藝鎮宇（李棟旭飾），是一名注重醫德的醫生。相國大學醫院總括社長具勝孝（曹承佑飾），他是認爲數據高於一切的冷酷的人物。小兒科負責人李晚霞（元真兒飾）。相國大學胸外科中心主任周景文（劉在明飾），他對胸外科有自信心，並有着醫生的使命感，和新上任的相國大學醫院總括社長具勝孝就醫院的運營方式等對立。相國大學神經外科中心主任吳世華（文素利飾），是在醫生父母培養下的金鑰匙，她以自己的職業和能力爲傲，充滿野心想成爲業界No.1.藝鎮宇的弟弟藝善宇（李奎炯飾），他是在健康保險審查委員會評價院工作的整形科專門醫生，小時候爸爸因爲車禍去世，他腿部有殘疾。<br>
+                </p>
+                <h1><a href="05/5-2.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="04/4-3.jpg">
+                <p>
+                    劇名：Ｗ兩個世界<br>導演：鄭大胤<br>編劇：宋在貞<br>演員：李鐘碩、韓孝周<br>劇情大綱：現實世界中的女醫生吳妍珠（韓孝周飾）偶然地進入了人氣漫畫《W》的世界，與漫畫主人公姜哲（李鍾碩飾）相遇後發生往來現實和虛幻中的懸疑愛情故事。<br>
+                </p>
+                <h1><a href="04/4-3.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="04/4-4.jpg">
+                <p>
+                    劇名：大力女子都奉順<br>導演：李亨民<br>編劇：白美瓊<br>演員：朴寶英、朴炯植、金志洙<br>劇情大綱：一個怪力女子都奉順（朴寶英飾）和一個獨一無二的男子安敏赫（朴炯植飾）相愛併發生橫衝直撞的浪漫愛情喜劇故事。是一部幻想、喜劇和動作結合的有趣故事，都奉順擁有誰都超越不了的怪力，被她打了至少需要62周才能痊癒。<br>
+                </p>
+                <h1><a href="04/4-4.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="03/3-4.jpg">
+                <p>
+                    劇名：我的ID是江南美人<br>導演：崔成範<br>編劇：崔秀英<br>演員：林秀香、車銀優、趙宇麗、郭東延<br>劇情大綱：改編自同名網絡漫畫（Webtoon），講述從小因爲長相醜陋而受欺凌的姜美來（林秀香飾）在整容後，以爲能夠過上新生活，卻在進入大學後經歷與夢想中完全不同的挫敗，在過程中找到真愛的故事。<br>
+                </p>
+                <h1><a href="03/3-4.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+
+            <div class="list_each">
+                <img src="03/3-7.jpg">
+                <p>
+                    劇名：花樣男子<br>導演：石井康晴、山室大輔、片山修<br>編劇：宅間孝行<br>演員：松本潤、井上真央、小栗旬、松田翔太、阿部力、松島菜菜子<br>劇情大綱：身背父母的期望，貧窮女牧野杉菜（井上真央飾）轉入了超級貴族學校英德學院，學生們被奢侈品環繞，上下等級懸殊不說，更讓本來就和同學們格格不入的杉菜鬱悶的是，學院整個被F4四人組控制，道明寺司（松本潤飾）、花澤類 （小栗旬飾）、西門総二郎（松田翔太飾）和美作明（阿部力飾），但凡惹到F4的人都難逃被死整的悲慘命運。 某日，實在看不過去道明寺飛揚跋扈的模樣，杉菜當場與其起了衝突，翌日便遭到了“紅紙條”的報復，危急時刻，杉菜屢屢被花澤類救下，杉菜鼓起勇氣向道明寺發起宣戰，與崇拜的姐姐椿（松島菜菜子飾）性情相似的杉菜的不屈不撓在道明寺的心中泛起了微瀾，他的心不知不覺被這個如雜草般頑強的女子佔據。 對衝動魯莽的道明寺無感，杉菜早已傾心於類，而類真正喜歡的卻是藤堂靜（佐田真由美飾），剪不斷理還亂的愛恨糾葛就此展開。<br>
+                </p>
+                <h1><a href="03/3-7.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+
+            <div class="list_each">
+                <img src="02/2-1.jpg">
+                <p>
+                    劇名：夫婦的世界<br>導演：毛完日 <br>編劇：朱賢<br>演員：金喜愛、朴海俊、韓素希<br>劇情大綱：一對看似相愛的夫妻因背叛而終結愛情，最後彼此陷入仇恨漩渦的故事。池善雨（金喜愛飾）是高山市家庭愛心醫院副院長，擁有帥氣的導演老公李泰伍（朴海俊飾）和懂事的兒子李俊英，家庭看起來十分美滿。然而有天，善雨卻在丈夫的圍巾上發現可疑的長髮，抽絲剝繭下發現丈夫不為人知的秘密。<br>
+                </p>
+                <h1><a href="02/2-1.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+        </div>
+        <!------------------------------------------------------------->
+
+
+
+        <!---------------------------21-20---------------------------------->
+        <div class="thirty">
+            <div class="list_each">
+                <img src="02/2-2.jpeg">
+                <p>
+                    劇名：犀利人妻<br>導演：徐輔軍<br>編劇：楊海薇、王珮華<br>演員：隋棠、溫昇豪、朱芯儀、宥勝<br>劇情大綱：溫瑞凡（溫昇豪飾）與謝安真（隋棠飾）育有一女，婚姻原本是幸福美滿，卻因第三者的介入破壞了原有的幸福。瑞凡深深愛上了安真的遠房親戚薇恩。安真要如何面對她婚姻中這突如其來的改變？<br>
+                </p>
+                <h1><a href="02/2-2.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+
+            </div>
+
+            <div class="list_each">
+                <img src="04/4-8.jpg">
+                <p>
+                    劇名：命中注定我愛你<br>導演：陳玉珊<br>編劇：陳玉珊<br>演員：陳喬恩、阮經天、陳楚河、白歆惠<br>劇情大綱：一對男女紀存希（阮經天飾）、陳欣怡（陳喬恩飾）在豪華旅行中共度一夜不小心懷孕後，經歷了不情願的婚姻，卻從中領悟到命運般的愛情之故事。<br>
+                </p>
+                <h1><a href="04/4-8.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="04/4-9.jpeg">
+                <p>
+                    劇名：我可能不會愛你<br>導演：班迪<br>編劇：Bandit Thongdee<br>演員：亞瑞克·阿莫蘇帕西瑞、莫茶诺·欣彩萍翩<br>劇情大綱：萍慕和纳坤是青梅竹馬的好朋友，萍慕在一家鞋子公司，平时負責销售管理，和賣場關係緊密。纳坤是曼谷航空的地勤經理，两个人平时工作都很忙，靠短信電話等聯繫，但是兩家人關係很好，總是互相送東西。隨著年龄的增長，萍慕作为大齡女青年開始面臨结婚難題，她之前的男友查姆提出分手追求公司其他同事，而出現在她身邊的是助理尼克，後來還有大學时候的前男友瑪汶，而纳坤也和公司的同事米琪開始了戀情，可是隨著時間的推移，兩个人都發現生命中最重要的好像就是這個青梅竹馬。
+                    <br>
+                </p>
+                <h1><a href="04/4-9.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="07/7-4.jpg">
+                <p>
+                    劇名：鬼滅之刃<br>導演：外崎春雄<br>編劇：ufotable<br>作者：吾峠呼世晴<br>劇情大綱：日本大正時代，竈門炭治郎繼承亡父留下的炭業工作，支撐一家七口，在山上過著樸實生活。某日他做完生意返家後發現全家遭鬼王鬼舞辻無慘屠殺，而大妹禰豆子變成了鬼。鬼殺隊富岡義勇見狀後本欲斬殺禰豆子，但他在見識到兄妹倆的親情後，推薦炭治郎拜鱗瀧左近次為師，經過兩年訓練，炭治郎學會對抗鬼的呼吸法與劍術，通過考驗加入鬼殺隊。<br>
+                </p>
+                <h1><a href="07/7-4.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="08/8-1.jpg">
+                <p>
+                    劇名：紳探<br>導演：鄧科、高琮凱<br>編劇：陸宣、貢小白<br>演員：白宇、尤靖茹<br>劇情大綱：三十年代的上海，歌舞昇平、紙醉金迷，當人們沉醉在睡夢中的時候，一樁樁離奇的案件在城市的某個角落悄悄發生。剛從警校畢業的美麗女子秦小曼懷著成為一名出色警探的理想，來到英租界，住進了沙利文公寓，與屢破奇案、名聲大噪的警局探案顧問--神探羅非，成了鄰居和同事。開始兩個人性格不合，一見面就成了「冤家」，卻在陰差陽錯下不得不一起聯手破案。<br>
+                </p>
+                <h1><a href="08/8-1.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="08/8-5.jpg">
+                <p>
+                    劇名：痞子英雄<br>導演：蔡岳勳、高林豹<br>編劇：陳慧如、吳洛纓<br>演員：周渝民、趙又廷、陳意涵、張鈞甯、修杰楷、王傳一、隋棠<br>劇情大綱：痞子與英雄兩個不斷與黑暗對抗，同時點燃光明的警察，憑藉著心中唯一的正義，維持著海港城這座臨海城市、美好而光亮的清晨。痞子與英雄在一場警匪追逐的混戰中，荒謬初會。<br>
+                </p>
+                <h1><a href="08/8-5.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+
+            <div class="list_each">
+                <img src="09/9-7.jpg">
+                <p>
+                    劇名：怪奇物語<br>導演：艾莉森·塔特拉克<br>編劇：杜夫兄弟、肖恩·利維、丹·科恩、卡爾·加達賽克、辛蒂·荷蘭、麥特·陶諾爾、布萊恩·萊特<br>演員：薇諾娜·瑞德、大衛·哈伯、芬恩·沃夫哈德、米莉·芭比·布朗<br>劇情大綱：發生在1980年代，位於美國印第安納州的一座虛構城鎮霍金斯鎮（英語：Hawkins），鎮上的一座美國能源部名下的政府實驗室，涉及著跟超常現象跟超自然現象有關的機密實驗，當中還包含許多不為人知的人體實驗樣本。實驗人員在無意間開啟一條通往稱作「顛倒世界」（英語：Upside Down）的另一維度之傳送門，該維度所造成的危害隨著時間推及而波及到霍金斯鎮上的市民。<br>
+                </p>
+                <h1><a href="09/9-7.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+        </div>
+        <!------------------------------------------------------------->
+
+        <!---------------------------30up---------------------------------->
+        <div class="many">
+            <div class="list_each">
+                <img src="01/1-3.jpg">
+                <p>
+                    劇名：花千骨<br>導演：林玉芬、高林豹、梁勝權<br>編劇：Fresh果果、饒俊<br>演員：霍建華、趙麗穎、馬可、張丹峰、蔣欣、李純、徐海喬<br>劇情大綱：花千骨（趙麗穎 飾）曾經被長留上仙白子畫（霍建華 飾）所救，因此芳心暗許，長大之後，她千里迢迢前往長留仙山，想要找到當年的恩人。經過重重的考驗和比試，花千骨終於成爲了白子畫的座下弟子，然而她並不知道的是，自己命格詭異，註定要成爲白子畫的生死劫，而花千骨和白子畫兩人在相處的過程中，早已經產生了超越了師徒的感情。 墮仙夏紫薰（蔣欣 飾）亦深愛着白子畫，不願看到愛人爲花千骨白白送死的她企圖下毒殺死花千骨，沒想到最後中毒的卻是白子畫。爲了挽救白子畫的性命，花千骨想盡了一切方法，並且在無意之中獲得了洪荒之力，爲日後的悲劇埋下了伏筆。<br>
+                </p>
+                <h1><a href="01/1-3.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+
+            </div>
+
+            <div class="list_each">
+                <img src="01/1-5.jpg">
+                <p>
+                    劇名：冰與火之歌-權力遊戲<br>導演：大衛·班紐夫、丹尼爾·威斯<br>編劇：大衛·貝尼奧夫、D·B·魏斯<br>演員：提利昂·蘭尼斯特、詹姆·蘭尼斯特、瑟曦·蘭尼斯特、丹妮莉絲·坦格利安、瓊恩·雪諾、珊莎·史塔克<br>劇情大綱：《權力遊戲》大致是根據小說《冰與火之歌》的故事線情節，故事背景設置於虛構的維斯特洛七王國及厄斯索斯大陸。該系列記錄了該領域貴族爭奪鐵王座的激烈王朝鬥爭，而其他家庭則為爭取獨立而鬥爭。它也在冰冷的北部和東面的厄斯索斯面臨更多的威脅。<br>
+                </p>
+                <h1><a href="01/1-5.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="03/3-1.jpg">
+                <p>
+                    劇名：夏至未至<br>導演：韓洋<br>編劇：劉飛、劉辰光、施適<br>演員：陳學冬、鄭爽、白敬亭、夏梓桐<br>劇情大綱：立夏（鄭爽飾）和閨蜜七七考入淺川一中，認識了傳說中的傅小司（陳學冬飾）和陸之昂（白敬亭飾），隨着遇見等人的加入，正式拉開了屬於他們的青春美好的高中生活。畢業後，成人世界的門向他們敞開，每個人都過上了千差萬別的生活在離夏天最遠的地方，十年的光陰讓人發現，除了記憶外，什麼也不能永久，但他們都學會了愛和成長。<br>
+                </p>
+                <h1><a href="03/3-1.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="03/3-6.jpg">
+                <p>
+                    劇名：一吻定情～LOVE IN TOKYO<br>導演：永田琴<br>編劇：三浦有為子<br>演員：古川雄輝、未來穗香<br>劇情大綱：在高中的入學典禮中，一年F班的相原琴子（未來穗香 飾）一直偷偷暗戀着一年A班的入江直樹（古川雄輝 飾）。在一天晚上收音機說將會有流星雨許願後，終於鼓起勇氣，寫了情書向直樹告白。不料卻換來直樹一句 “我討厭笨女人” 的無情的拒絕。並且被拒事情讓全班同學都知道，讓她非常難過 。打算從此忘記直樹的琴子，有一天新建的家卻因爲被流星砸到而毀。於是只好寄住在父親相原重雄學生時代的朋友家。沒想到，父親朋友竟然就是直樹的父親。這就意味着琴子要開始和直樹共處一家。琴子和直樹這對冤家，還有對直樹抱有強烈的嫉妒心，一心一意喜歡琴子的池澤金之助（山田裕貴 飾），到底能上演一段如何爆笑的青春之歌呢？<br>
+                </p>
+                <h1><a href="3/3-6.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="05/5-8.jpg">
+                <p>
+                    劇名：夜班急診室<br>導演：Pierre Morel<br>編劇：Gabe Sachs、Jeff Judah<br>演員：伊恩·馬肯、吉爾·弗林特、肯·梁、布倫丹·費爾<br>劇情大綱：以德克薩斯州的聖安東尼奧紀念醫院為舞台，描寫一群於夜班急診室執勤的醫生們與其周遭人事物的故事。在這群夜班醫生裡，多半是退役軍醫或是相關經驗者。每當有事故發生，他們總在第一時間趕往現場，必要時更以戰地救援的經驗對患者施行處置。<br>
+                </p>
+                <h1><a href="05/5-8.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="06/6-1.jpg">
+                <p>
+                    劇名：延禧攻略<br>導演：惠楷棟、溫德光<br>編劇：周末<br>演員：吳謹言、佘詩曼、秦嵐、聶遠、許凱、譚卓<br>劇情大綱：乾隆六年二月初二（公元1741年3月18日），包衣出身的魏瓔珞（吳謹言飾）為尋求親姐魏瓔寧死亡真相，入紫禁城為宮女，憑藉智慧成為富察皇后身邊的貼身宮女，富察皇后嫻於禮法，擔心瓔珞走上歧途，竭力給予她溫暖與幫助，在 感情上與她情同姊妹。在皇后的悉心教導下，魏瓔珞一步步成長為正直堅強的大宮女。後來富察皇后自殺身亡， 魏瓔珞發現皇后的死亡真相後，成為妃嬪，憑勇往直前的勇氣、機敏靈活的頭腦、寬廣博大的胸懷，為皇后報仇。同時也與乾隆從互相敵視到最終彼此理解、互相扶持，最終成為令懿皇后。<br>
+                </p>
+                <h1><a href="06/6-1.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+
+            <div class="list_each">
+                <img src="06/6-6.jpg">
+                <p>
+                    劇名：江～戰國三公主<br>導演：伊勢田雅也<br>編劇：田渕久美子<br>演員：上野樹里、宮澤理惠、水川麻美<br>劇情大綱：江的母親為信長之妹・市。江（上野樹里飾）作為日本史上最有名的三姊妹（淺井三姊妹）中的幼妹出生，後成為幕府第二代將軍德川秀忠正室，女兒嫁予天皇成為中宮、長子為第三代將軍。然而江的一生都相當苦亂波瀾。經過二次城陷而父母雙亡，被當時擁有絕對權力的織田信長、豐臣秀吉和德川家康翻弄其人生，更有著三次的婚姻。最後，更與大姊・淀為了爭奪天下而互相敵對。深知戰國之世痛苦的江，不斷為天下太平而祈願著，最終於江戶城建立大奧。奠定了其後二百多年、和平繁榮的江戶時代基礎。<br>
+                </p>
+                <h1><a href="06/6-6.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+
+            <div class="list_each">
+                <img src="06/6-7.jpg">
+                <p>
+                    劇名：蘭陵王<br>導演：鍾澍佳、周曉鵬<br>編劇：吳大偉、黃柔柔、陳小豪、孟芝<br>演員：馮紹峰、林依晨、陳曉東<br>劇情大綱：一千四百多年前，北朝戰亂不斷，北周宇文邕（陳曉東 飾）屢屢侵霸邊界，誓言要成為北朝的霸王。北齊在驍勇善戰的蘭陵王（馮紹峰 飾）帶領之下，抵禦強敵，築起一道堅實的城牆。蘭陵王在一次與北周的交戰中，意外闖入隱居在兩國邊境上擁有預知先機能力的巫咸後人村落。白山後人楊雪舞（林依晨 飾）被迫捲入兩軍爭亂，人稱「天女」。<br>
+                </p>
+                <h1><a href="06/6-7.html">
+                    more</a>
+                </h1>
+<!--
+                <div class="score">
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <img src="../images/favorite.png" />
+                    <div class="collection">
+                        <img src="../images/heart.png" />
+                    </div>
+                </div>
+-->
+            </div>
+        </div>
+        <!------------------------------------------------------------->
+
+        <!---------------------------------->
+
+        <!-- <div class="more_drama">
+            <hr>
+            <p>更多最新</p>
+            <img id="list_left" src="../images/back.png" />
+            <img />
+            <img />
+            <img />
+            <img id="list_right" src="../images/next.png" />
+        </div>-->
+        <!--<div class="flexslider carousel">
+            <ul class="slides">
+                <li>
+                    <img src="01/1-1.jpg" />
+                </li>
+                <li>
+                    <img src="03/3-1.jpg" />
+                </li>
+                <li>
+                    <img src="04/4-2.jpg" />
+                </li>
+                <li>
+                    <img src="07/7-7.jpg" />
+                </li>
+                <!-- items mirrored twice, total of 12 --
+            </ul>
+        </div>-->
+    </div>
+
+
+
+
+</body>
+
+</html>

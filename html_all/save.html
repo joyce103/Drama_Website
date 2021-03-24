@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .save_title h2 {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .save_title {
+        /*        border: 1px solid;*/
+        height: 80px;
+    }
+
+    .save_drama {
+        margin-top: 50px;
+    }
+
+    .save_drama img {
+        border: none;
+        width: 280px;
+        height: 400px;
+    }
+
+    body {
+        background-color: #ebe1dd;
+    }
+
+    #ok{
+         margin-top: 50px;
+    }
+    
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/header.css">
+    <title>劇荒了嗎</title>
+    <script src="../_js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            var $show = $('<div id="ok"><a href="" id="link"><img src="" id="photo" /></a></div>')
+            //            localStorage.getItem('like.src');
+            //            localStorage.getItem('like.href');
+
+            if (localStorage.member) {
+                $show.find('#photo').attr('src', localStorage.getItem('like.src'));
+                $show.find('#link').attr('href', localStorage.getItem('like.href'));
+                $('#ok').append($show);
+            }
+
+            //            localStorage.getItem('likesrc');
+            //            localStorage.getItem('likehref');
+            if (localStorage.member) {
+                $show.find('#photo').attr('src', localStorage.getItem('likesrc'));
+                $show.find('#link').attr('href', localStorage.getItem('likehref'));
+                $('.save_drama').append($show);
+            }
+
+            //            localStorage.getItem('like.s');
+            //            localStorage.getItem('like.hf');
+            if (localStorage.member) {
+                $show.find('#photo').attr('src', localStorage.getItem('like.s'));
+                $show.find('#link').attr('href', localStorage.getItem('like.hf'));
+                $('.save_drama').append($show);
+            }
+
+
+            //宣告隨機亂數讓每次的問題都不同
+            var Q = Math.floor((Math.random() * 3) + 0);
+            //宣告jQ函數
+            var $member_data = $('#member_data'); //頭像
+            var $menu_data = $('#menu_data'); //左邊選單
+            var $sort = $('#sort'); //選單分類
+            var $sort_2 = $('#sort_2'); //選單分類分支
+            var $q = $('#question');
+            //判斷div是否有顯示有顯示true沒顯示false
+            var member = false;
+            var menu = false;
+            var sort = false;
+            var question = false;
+            //最一開始將沒有要顯示的div隱藏
+            $('.four').hide();
+            $('#member_data').hide();
+            $('#menu_data').hide();
+            $('#sort_2').hide();
+            $('#question').hide();
+
+            //搜尋程式
+            var search = function() {
+                for (var i = 0; i < all.length; i++) {
+                    var $cw = $('<div class="list_each"><img class="img" src="05%25E9%2586%25AB%25E7%2599%2582%25E9%25A1%259E/5-6.png"><p class="content"></p><a href="" id="net"><h1>more</h1></a><div class="score"><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><div class="collection"><img src="../images/heart.png" /></div></div></div>');
+
+                    $cw.find('.img').attr('src', "all[i].src"); //尋找照片
+                    $cw.find('.content').text(all[i].text); //尋找內容
+                    $cw.find('#net').attr("href", "all[i].href"); //尋找more連結
+                    $('.drama_list').append($cw);
+                }
+
+            };
+            //search();
+
+            //搜尋程式
+            var update = function(key) {
+                search();
+                var $select = $('.list_each');
+                $select.hide();
+                for (var i = 0; i < all.length; i++) {
+                    if (all[i].text.indexOf(key) != -1) {
+                        console.log(all[i].text);
+                        $select.eq(i).show();
+                    }
+                }
+            };
+
+            //讀取input中的內容
+            $('.search>img').click(function() {
+                var $input = $('#input').val();
+                update($input);
+            });
+
+
+            //點擊頭像出現框框
+            $('.member').click(function() {
+                if (member) {
+                    $member_data.hide();
+                    member = false;
+                } else {
+                    $member_data.show();
+                    $menu_data.hide();
+                    menu = false;
+                    member = true;
+                    $q.hide('slideUp');
+                    question = false;
+                    //新增
+                    $('#signin').hide();
+                    s = false;
+                }
+            });
+
+            //點擊選單出現框框
+            $('.menu').click(function() {
+                if (menu) {
+                    $menu_data.hide();
+                    menu = false;
+                } else {
+                    $menu_data.show();
+                    $member_data.hide();
+                    menu = true;
+                    member = false;
+                    $q.hide('slideUp');
+                    question = false;
+                }
+            });
+
+            //分類點下去會延伸
+            $('#sort').click(function() {
+                if (sort) {
+                    $sort_2.hide();
+                    $sort.text('+分類');
+                    $sort_2.css('width', '0px');
+                    $sort_2.css('height', '0px');
+                    $menu_data.css('height', '160px');
+                    $menu_data.css('width', '100px');
+                    sort = false;
+                } else {
+                    $sort_2.show();
+                    $sort.text('-分類');
+                    $sort_2.css('width', '130px');
+                    $sort_2.css('height', '140px');
+                    $menu_data.css('height', '310px');
+                    $menu_data.css('width', '130px');
+                    sort = true;
+                }
+            });
+
+            //新增
+            $('.btn').disabled = true;
+
+            //登入頁面
+            $('#signin').hide();
+            var $si = $('#si');
+            var $signin = $('#signin');
+            var s = false;
+            $('#si').click(function() {
+                $('#signin').show();
+                s = true;
+                $member_data.hide();
+                member = false;
+            });
+
+            $('.in').focus(function() {
+                if ($('#Name').val() == "" && $('#Code').val() == "") {
+                    $("#go").attr("disabled", true); //將登入按鈕改為不可用
+                } else if ($('#Name').val() != "" && $('#Code').val() != "") {
+                    $("#go").attr("disabled", false); //將登入按鈕改為可用
+                }
+
+
+            });
+
+            $('#cancel').click(function() {
+                $("#go").attr("disabled", true);
+                $('#signin').hide();
+                s = false;
+            });
+
+            $('#go').click(function(e) {
+                $('#signin').hide();
+                s = false;
+                $('.comment_member p').text("達人 | " + $('#Name').val() + "說：");
+
+                e.preventDefault();
+                var source = {
+                    name: '',
+                    code: ''
+                };
+                source.name = $('#Name').val();
+                source.code = $('#Code').val();
+                if (localStorage) {
+                    localStorage.member = JSON.stringify(source);
+                }
+
+
+            });
+
+
+            if (localStorage.member) {
+                var m = JSON.parse(localStorage.member);
+                $('#Name').val(m.name);
+                $('#Code').val(m.code);
+                $('.comment_member p').text("達人 | " + $('#Name').val() + "說：");
+
+            }
+
+
+            //新增
+        });
+
+    </script>
+</head>
+
+<body>
+    <!--header-->
+    <div class="header">
+        <div class="menu">
+            <img src="../images/open-menu.png" />
+        </div>
+        <div class="logo">
+            <p>劇荒了嗎</p>
+        </div>
+        <div class="search">
+
+            <img src="../images/search.png" />
+            <input class="search" id="input">
+        </div>
+<!--
+        <div class="find" id="open">
+            <p>幫我找</p>
+                幫我找的對話框
+            <div id="question" title="問題">
+
+            </div>
+        </div>
+-->
+        <div class="member">
+            <img src="../images/user.png" />
+        </div>
+    </div>
+
+    <!--    登入視窗-->
+    <div id="signin">
+        <p>帳號:</p><input id="Name" class="in">
+        <p>密碼:</p><input id="Code" class="in">
+        <button class="btn" id="go">登入</button>
+        <button class="btn" id="cancel">取消</button>
+    </div>
+
+    <!--    頭像下的框框-->
+    <div id="member_data">
+        <a href="">
+            <p>-我的收藏-</p>
+        </a>
+        <p id="si">-登入-</p>
+    </div>
+
+    <!--    左邊選單-->
+    <div id="menu_data">
+        <a href="../html_oringinal/drama_list%20(new).html">
+            <p>-最新</p>
+        </a>
+        <a href="../html_oringinal/drama_list%20(hot).html">
+            <p>-最熱</p>
+        </a>
+        <p id="sort">+分類</p>
+        <div id="sort_2">
+            <a href="drama_list(country).html">
+                <p>-國家</p>
+            </a>
+            <a href="drama_list(style).html">
+                <p>-類型</p>
+            </a>
+            <a href="drama_list(episode).html">
+                <p>-集數</p>
+            </a>
+            <a href="drama_list(start).html">
+                <p>-上映時間</p>
+            </a>
+        </div>
+        <a href="../html_oringinal/drama_list(best)%20.html">
+            <p>-精選</p>
+        </a>
+    </div>
+    <!--header-->
+
+    <div class="save_title">
+        <h2>我的收藏</h2>
+    </div>
+    <div class="save_info">
+        <div class="save_drama" id="ok">
+            
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>

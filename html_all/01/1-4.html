@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/header.css">
+    <link rel="stylesheet" href="../../css/info.css">
+    <!--    <link rel="stylesheet" href="../css/list.css">-->
+    <title>劇荒了嗎</title>
+       <script src="../../_js/jquery.min.js"></script>
+<script>
+        $(document).ready(function() {
+            // body...
+
+            // $('#star1').mouseenter(function(){
+            //     $('#star1').hide();
+            //     $('#starshine1').show();
+            // }).mouseout(function(){
+            //     $('#star1').show();
+            //     $('#starshine1').hide();
+            // });
+
+            $('#star1').click(function() {
+                $('#star1').hide();
+                $('#starshine1').show();
+            });
+            $('#starshine1').click(function() {
+                $('#star1').show();
+                $('#star2').show();
+                $('#star3').show();
+                $('#star4').show();
+                $('#star5').show();
+                $('#starshine1').hide();
+                $('#starshine2').hide();
+                $('#starshine3').hide();
+                $('#starshine4').hide();
+                $('#starshine5').hide();
+            });
+            $('#star2').click(function() {
+                $('#star1').hide();
+                $('#star2').hide();
+                $('#starshine1').show();
+                $('#starshine2').show();
+            });
+            $('#starshine2').click(function() {
+                $('#star2').show();
+                $('#star3').show();
+                $('#star4').show();
+                $('#star5').show();
+                $('#starshine2').hide();
+                $('#starshine3').hide();
+                $('#starshine4').hide();
+                $('#starshine5').hide();
+            });
+            $('#star3').click(function() {
+                $('#star1').hide();
+                $('#star2').hide();
+                $('#star3').hide();
+                $('#starshine1').show();
+                $('#starshine2').show();
+                $('#starshine3').show();
+            });
+            $('#starshine3').click(function() {
+                $('#star3').show();
+                $('#star4').show();
+                $('#star5').show();
+                $('#starshine3').hide();
+                $('#starshine4').hide();
+                $('#starshine5').hide();
+            });
+            $('#star4').click(function() {
+                $('#star1').hide();
+                $('#star2').hide();
+                $('#star3').hide();
+                $('#star4').hide();
+                $('#starshine1').show();
+                $('#starshine2').show();
+                $('#starshine3').show();
+                $('#starshine4').show();
+            });
+            $('#starshine4').click(function() {
+                $('#star4').show();
+                $('#star5').show();
+                $('#starshine4').hide();
+                $('#starshine5').hide();
+            });
+            $('#star5').click(function() {
+                $('#star1').hide();
+                $('#star2').hide();
+                $('#star3').hide();
+                $('#star4').hide();
+                $('#star5').hide();
+                $('#starshine1').show();
+                $('#starshine2').show();
+                $('#starshine3').show();
+                $('#starshine4').show();
+                $('#starshine5').show();
+            });
+            $('#starshine5').click(function() {
+                $('#star5').show();
+                $('#starshine5').hide();
+            });
+
+            $('#heart').click(function() {
+                $('#like').show();
+                $('#heart').hide();
+            });
+            $('#like').click(function() {
+                $('#like').hide();
+                $('#heart').show();
+            });
+
+            //評論區提交
+            $('#submit').click(function() {
+                var $item = $(this).closest('.comment_area');
+                var content = $('#ta').val(); //增加id並刪除p內容改為使用者姓名
+                var $comment_item = $('<div class="comment"><div class="comment_member"><p id="text"></p><img id="comment_user" src="../../images/user.png"/><div class="comment_text"></div></div><hr></div>');
+                $comment_item.find('.comment_text').text(content);
+                //修改
+                $comment_item.find('#text').text("達人 | " + $('#Name').val() + "說：");
+                //修改
+                $('#c').append($comment_item);
+            });
+
+
+
+            //宣告問題陣列
+            var ask = [
+                [
+                    "<p>" + "Q1:故事類型" + "</p>" +
+                    "<p>" + "A:美食" + "</p>" +
+                    "<p>" + "A:職人" + "</p>" +
+                    "<p>" + "A:旅遊" + "</p>" +
+                    "<p>" + "A:其他" + "</p>" +
+                    "<p>" + "Q2:集數" + "</p>" +
+                    "<p>" + "A:1-10" + "</p>" +
+                    "<p>" + "A:11-20" + "</p>" +
+                    "<p>" + "A:20-40" + "</p>" +
+                    "<p>" + "A:40以上" + "</p>"
+                ],
+                [
+                    "<p>" + "Q1:戲劇背景" + "</p>" +
+                    "<p>" + "A:青春校園" + "</p>" +
+                    "<p>" + "A:都市職場" + "</p>" +
+                    "<p>" + "A:鄉村休閒" + "</p>" +
+                    "<p>" + "A:古裝" + "</p>" +
+                    "<p>" + "A:奇幻" + "</p>" +
+                    "<p>" + "Q2:男女主角關係" + "</p>" +
+                    "<p>" + "A:學長學妹" + "</p>" +
+                    "<p>" + "A:姊弟戀" + "</p>" +
+                    "<p>" + "A:大叔戀" + "</p>" +
+                    "<p>" + "A:其他" + "</p>"
+                ],
+                [
+                    "<p>" + "Q1:分級制度" + "</p>" +
+                    "<p>" + "A:普遍級" + "</p>" +
+                    "<p>" + "A:保護級" + "</p>" +
+                    "<p>" + "A:輔12級" + "</p>" +
+                    "<p>" + "A:輔導級" + "</p>" +
+                    "<p>" + "A:限制級" + "</p>" +
+                    "<p>" + "Q2:請選擇類型" + "</p>" +
+                    "<p>" + "A:真人真事" + "</p>" +
+                    "<p>" + "A:小說改編" + "</p>" +
+                    "<p>" + "A:其他" + "</p>"
+                ]
+
+            ]
+            //宣告隨機亂數讓每次的問題都不同
+            var Q = Math.floor((Math.random() * 3) + 0);
+            //宣告jQ函數
+            var $member_data = $('#member_data'); //頭像
+            var $menu_data = $('#menu_data'); //左邊選單
+            var $sort = $('#sort'); //選單分類
+            var $sort_2 = $('#sort_2'); //選單分類分支
+            var $q = $('#question');
+            //判斷div是否有顯示有顯示true沒顯示false
+            var member = false;
+            var menu = false;
+            var sort = false;
+            var question = false;
+            //最一開始將沒有要顯示的div隱藏
+            $('.four').hide();
+            $('#member_data').hide();
+            $('#menu_data').hide();
+            $('#sort_2').hide();
+            $('#question').hide();
+
+            //搜尋程式
+            var search = function() {
+                for (var i = 0; i < all.length; i++) {
+                    var $cw = $('<div class="list_each"><img class="img" src="05%25E9%2586%25AB%25E7%2599%2582%25E9%25A1%259E/5-6.png"><p class="content"></p><a href="" id="net"><h1>more</h1></a><div class="score"><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><div class="collection"><img src="../images/heart.png" /></div></div></div>');
+
+                    $cw.find('.img').attr('src', "all[i].src"); //尋找照片
+                    $cw.find('.content').text(all[i].text); //尋找內容
+                    $cw.find('#net').attr("href", "all[i].href"); //尋找more連結
+                    $('.drama_list').append($cw);
+                }
+
+            };
+            //search();
+
+            //搜尋程式
+            var update = function(key) {
+                search();
+                var $select = $('.list_each');
+                $select.hide();
+                for (var i = 0; i < all.length; i++) {
+                    if (all[i].text.indexOf(key) != -1) {
+                        console.log(all[i].text);
+                        $select.eq(i).show();
+                    }
+                }
+            };
+
+            //讀取input中的內容
+            $('.search>img').click(function() {
+                var $input = $('#input').val();
+                update($input);
+            });
+
+            //讀取自訂問答的選項
+            $('#question').click(function() {
+                $(this).each(function() {
+                    console.log($('this').text());
+                });
+            });
+
+            //點擊頭像出現框框
+            $('.member').click(function() {
+                if (member) {
+                    $member_data.hide();
+                    member = false;
+                } else {
+                    $member_data.show();
+                    $menu_data.hide();
+                    menu = false;
+                    member = true;
+                    $q.hide('slideUp');
+                    question = false;
+                    //新增
+                    $('#signin').hide();
+                    s = false;
+                }
+            });
+
+            //點擊選單出現框框
+            $('.menu').click(function() {
+                if (menu) {
+                    $menu_data.hide();
+                    menu = false;
+                } else {
+                    $menu_data.show();
+                    $member_data.hide();
+                    menu = true;
+                    member = false;
+                    $q.hide('slideUp');
+                    question = false;
+                }
+            });
+
+            //分類點下去會延伸
+            $('#sort').click(function() {
+                if (sort) {
+                    $sort_2.hide();
+                    $sort.text('+分類');
+                    $sort_2.css('width', '0px');
+                    $sort_2.css('height', '0px');
+                    $menu_data.css('height', '160px');
+                    $menu_data.css('width', '100px');
+                    sort = false;
+                } else {
+                    $sort_2.show();
+                    $sort.text('-分類');
+                    $sort_2.css('width', '130px');
+                    $sort_2.css('height', '140px');
+                    $menu_data.css('height', '310px');
+                    $menu_data.css('width', '130px');
+                    sort = true;
+                }
+            });
+
+            //對話框程式
+            $('#open').click(function() {
+                if (question) {
+                    $q.hide('slideUp');
+                    question = false;
+                } else {
+                    $q.show('slideDown');
+                    question = true;
+                    $menu_data.hide();
+                    menu = false;
+                    $member_data.hide();
+                    member = false;
+                }
+            });
+
+            //隨機問題
+            for (var i = 0; i < ask[Q].length; i++) {
+                $q.append('<p>' + ask[Q] + '</p>');
+            }
+
+            //新增
+            $('.btn').disabled = true;
+
+            //登入頁面
+            $('#signin').hide();
+            var $si = $('#si');
+            var $signin = $('#signin');
+            var s = false;
+            $('#si').click(function() {
+                $('#signin').show();
+                s = true;
+                $member_data.hide();
+                member = false;
+            });
+
+            $('.in').focus(function() {
+                if ($('#Name').val() == "" && $('#Code').val() == "") {
+                    $("#go").attr("disabled", true); //將登入按鈕改為不可用
+                } else if ($('#Name').val() != "" && $('#Code').val() != "") {
+                    $("#go").attr("disabled", false); //將登入按鈕改為可用
+                }
+
+
+            });
+
+            $('#cancel').click(function() {
+                $("#go").attr("disabled", true);
+                $('#signin').hide();
+                s = false;
+            });
+
+            $('#go').click(function(e) {
+                $('#signin').hide();
+                s = false;
+                 $('.comment_member p').text("達人 | " + $('#Name').val() + "說：");
+
+                e.preventDefault();
+                var source = {
+                    name:'',
+                    code:''
+                };
+                source.name = $('#Name').val();
+                source.code = $('#Code').val();
+                if (localStorage) {
+                    localStorage.member = JSON.stringify(source);
+                }
+
+
+            });
+
+
+            if (localStorage.member) {
+                var m = JSON.parse(localStorage.member);
+                $('#Name').val(m.name);
+                $('#Code').val(m.code);
+                $('.comment_member p').text("達人 | " + $('#Name').val() + "說：");
+
+            }
+
+
+            //新增
+        });
+
+    </script>
+</head>
+
+<body>
+    <!--header-->
+    <div class="header">
+        <div class="menu">
+            <img src="../../images/open-menu.png" />
+        </div>
+        <div class="logo">
+            <p>劇荒了嗎</p>
+        </div>
+        <div class="search">
+
+            <img src="../../images/search.png" />
+            <input class="search" id="input">
+        </div>
+<!--
+        <div class="find" id="open">
+            <p>幫我找</p>
+                幫我找的對話框
+            <div id="question" title="問題">
+
+            </div>
+        </div>
+-->
+        <div class="member">
+            <img src="../../images/user.png" />
+        </div>
+    </div>
+
+    <!--    登入視窗-->
+    <div id="signin">
+        <p>帳號:</p><input id="Name" class="in">
+        <p>密碼:</p><input id="Code" class="in">
+        <button class="btn" id="go">登入</button>
+        <button class="btn" id="cancel">取消</button>
+    </div>
+
+    <!--    頭像下的框框-->
+    <div id="member_data">
+        <a href="../save.html">
+            <p>-我的收藏-</p>
+        </a>
+        <p id="si">-登入-</p>
+    </div>
+
+    <!--    左邊選單-->
+    <div id="menu_data">
+        <a href="../../html_oringinal/drama_list%20(new).html">
+            <p>-最新</p>
+        </a>
+        <a href="../../html_oringinal/drama_list%20(hot).html">
+            <p>-最熱</p>
+        </a>
+        <p id="sort">+分類</p>
+        <div id="sort_2">
+            <a href="../drama_list(country).html">
+                <p>-國家</p>
+            </a>
+            <a href="../drama_list(style).html">
+                <p>-類型</p>
+            </a>
+            <a href="../drama_list(episode).html">
+                <p>-集數</p>
+            </a>
+            <a href="../drama_list(start).html">
+                <p>-上映時間</p>
+            </a>
+        </div>
+        <a href="../../html_oringinal/drama_list(best)%20.html">
+            <p>-精選</p>
+        </a>
+    </div>
+    <!--header-->
+
+    <div class="drama_info">
+        <h2>獵魔士</h2>
+       <div class="score" title="點選星星進行評分">
+            <img id="star1" class="star" src="../../images/favorite.png" />
+            <img id="starshine1" class="starshine" src="../../images/star.png"/>
+            <img id="star2" class="star"  src="../../images/favorite.png" />
+            <img id="starshine2" class="starshine" src="../../images/star.png"/>
+            <img id="star3" class="star"  src="../../images/favorite.png" />
+            <img id="starshine3" class="starshine" src="../../images/star.png"/>
+            <img id="star4" class="star"  src="../../images/favorite.png" />
+            <img id="starshine4" class="starshine" src="../../images/star.png"/>
+            <img id="star5" class="star"  src="../../images/favorite.png" />
+            <img id="starshine5" class="starshine" src="../../images/star.png"/>
+                <div class="collection">
+                    <img id="heart" src="../../images/heart.png" />
+                    <img id="like" class="starshine"src="../../images/heart-2.png" />
+                </div>
+        </div>
+        <hr>
+        <div class="drama_pic">
+            <img src="1-4.png">
+        </div>
+        <div class="drama_intro">
+            <p>英文：The Witcher<br>導演：托瑪什 ·巴金斯基<br>編劇：勞倫·施密特·赫斯里希<br>演員：亨利·卡維爾、安雅·夏隆查、芙蕾雅·艾倫、安娜·夏佛、喬伊·巴堤<br>集數： 8集（第一季 ; 已預訂有第二季）<br>上映日期：2019年<br>類型：美劇/奇幻/改編/劇情<br>劇情大綱：劇情主要圍繞「獵魔士」Geralt of Rivia（亨利·卡維爾飾）逃不過命運主宰，不但被捲入一場複雜的陰謀，同時要保護公主Ciri（芙蕾雅·艾倫飾），而當中涉及多個角色之間的權鬥。</p>
+        </div>
+        <div class="drama_source">
+            <hr>
+            <div class="source_title">
+                <p>片源推薦</p>
+            </div>
+            <div>
+                <div class="source_name">
+                    <p><a href="https://www.netflix.com/title/80189685">Netflix</a></p>
+                    <h3></h3>
+                </div>
+                <div class="source_name">
+                    <p></p>
+                    <h3></h3>
+                </div>
+                <div class="source_name">
+                    <p></p>
+                    <h3></h3>
+                </div>
+                <hr>
+            </div>
+            <div>
+                <div class="source_name_b">
+                    <p></p>
+                    <h3></h3>
+                </div>
+                <div class="source_name_b">
+                    <p></p>
+                    <h3></h3>
+                </div>
+                <hr>
+            </div>
+        </div>
+         <div class="drama_comment">
+            <p>劇迷討論區</p>
+            <div class="comment_border">
+                <div class="comment">
+                <div class="comment_member">
+                    <p>達人     | bring_bring_103說：</p>
+                    <img id="comment_user" src="../../images/user.png"/>
+                    <div class="comment_text"></div>
+                </div>
+<!--                <div class="comment_star">
+                    <img id="comment_star" src="../images/favorite.png"/>
+                    <p>4.5</p>
+                </div> -->
+                <hr>
+            </div>
+            <div id="c">
+
+            </div>
+
+                
+            </div>
+            <div class="comment_area">
+                
+                <label class="taa">我要評論：</label>
+                <div ><textarea id="ta"  name="commet"></textarea></div>
+                <input  id="submit" type="submit" value="提交">
+            
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

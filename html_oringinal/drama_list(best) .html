@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/list.css">
+    <link rel="stylesheet" href="../woocommerce-FlexSlider-690832b/flexslider.css" type="text/css">
+    <script src="../_js/jquery.min.js"></script>
+    <script src="../woocommerce-FlexSlider-690832b/jquery.flexslider.js"></script>
+    <title>劇荒了嗎</title>
+    <script>
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                animationLoop: false,
+                itemWidth: 400,
+                itemMargin: 5
+            });
+        });
+        $(document).ready(function() {
+            //宣告問題陣列
+            var ask = [
+                [
+                    "<p>" + "Q1:故事類型" + "</p>" +
+                    "<p>" + "A:美食" + "</p>" +
+                    "<p>" + "A:職人" + "</p>" +
+                    "<p>" + "A:旅遊" + "</p>" +
+                    "<p>" + "A:其他" + "</p>" +
+                    "<p>" + "Q2:集數" + "</p>" +
+                    "<p>" + "A:1-10" + "</p>" +
+                    "<p>" + "A:11-20" + "</p>" +
+                    "<p>" + "A:20-40" + "</p>" +
+                    "<p>" + "A:40以上" + "</p>"
+                ],
+                [
+                    "<p>" + "Q1:戲劇背景" + "</p>" +
+                    "<p>" + "A:青春校園" + "</p>" +
+                    "<p>" + "A:都市職場" + "</p>" +
+                    "<p>" + "A:鄉村休閒" + "</p>" +
+                    "<p>" + "A:古裝" + "</p>" +
+                    "<p>" + "A:奇幻" + "</p>" +
+                    "<p>" + "Q2:男女主角關係" + "</p>" +
+                    "<p>" + "A:學長學妹" + "</p>" +
+                    "<p>" + "A:姊弟戀" + "</p>" +
+                    "<p>" + "A:大叔戀" + "</p>" +
+                    "<p>" + "A:其他" + "</p>"
+                ],
+                [
+                    "<p>" + "Q1:分級制度" + "</p>" +
+                    "<p>" + "A:普遍級" + "</p>" +
+                    "<p>" + "A:保護級" + "</p>" +
+                    "<p>" + "A:輔12級" + "</p>" +
+                    "<p>" + "A:輔導級" + "</p>" +
+                    "<p>" + "A:限制級" + "</p>" +
+                    "<p>" + "Q2:請選擇類型" + "</p>" +
+                    "<p>" + "A:真人真事" + "</p>" +
+                    "<p>" + "A:小說改編" + "</p>" +
+                    "<p>" + "A:其他" + "</p>"
+                ]
+
+            ]
+            //宣告隨機亂數讓每次的問題都不同
+            var Q = Math.floor((Math.random() * 3) + 0);
+            //宣告jQ函數
+            var $member_data = $('#member_data'); //頭像
+            var $menu_data = $('#menu_data'); //左邊選單
+            var $sort = $('#sort'); //選單分類
+            var $sort_2 = $('#sort_2'); //選單分類分支
+            var $q = $('#question');
+            //判斷div是否有顯示有顯示true沒顯示false
+            var member = false;
+            var menu = false;
+            var sort = false;
+            var question = false;
+            //最一開始將沒有要顯示的div隱藏
+            $('.four').hide();
+            $('#member_data').hide();
+            $('#menu_data').hide();
+            $('#sort_2').hide();
+            $('#question').hide();
+            var all = [{
+                    src: "../html_all/01/1-6.jpeg",
+                    text: "劇名：德魯納酒店<br>導演：吳忠煥<br>編劇：洪貞恩、洪美蘭<br>演員：李知恩、呂珍九、申正根、裴海善<br>劇情大綱：首爾市內變化最大的市中心正中間，位置於黃金寶地 — 明洞的古老破舊建築物，乍一看就像準備重建的空建築物，但仔細地看的話，其實是經營中的酒店。如果早上的話，在那前面有數百萬的流動人口經過，卻幾乎沒有客人進入那酒店裡面。而在開始入夜、路上變得更冷清、市中心也入睡之時，招牌便亮著燈光，酒店樓層亦會升高的....德魯納酒店。靈賓專用的德魯納酒店裡，超精英酒店管理人又軟弱具燦星擔任著總經理，和乖戾、脾氣暴躁的社長張滿月一起，為特別的靈魂客人們提供特級服務時發生的故事。<br>",
+                    href: "../html_all/01/1-6.html"
+                },
+                {
+                    src: "../html_all/03/3-9.jpg",
+                    text: "劇名：想見你<br>導演：黃天仁<br>編劇：簡奇峯、林欣慧<br>演員：柯佳嬿、許光漢、施柏宇、顏毓麟<br>劇情大綱：27歲上班族黃雨萱（柯佳嬿飾），因對前男友王詮勝（許光漢飾）的思念，意外靈魂穿越回到1998年台南，變成17歲的女高中生陳韻如（柯佳嬿飾），卻遇見和前男友長得一模一樣的李子維（許光漢飾），以及始終暗戀著陳韻如的暖男莫俊傑（施柏宇飾），展開一連串浪漫虐心又懸疑難解的故事。<br>",
+                    href: "../html_all/03/3-9.html"
+                },
+                {
+                    src: "../html_all/09/9-6.jpg",
+                    text: "劇名：CODE浮士德遊戲<br>導演：詹大為<br>編劇：涂芳祥、藍夢荷、邵慧婷<br>演員：吳慷仁、謝沛恩、賈孝國、張翰<br>劇情大綱：Alex（吳慷仁飾）只是一個平凡且工作能力平平的銀行理財專員，因想讓未婚妻（謝沛恩飾）以後過上有錢的好日子，聽信了公司的內線消息，卻一夜之間賠掉將近一半的存款積蓄，此時出現了謎樣的APP「CODE」，此APP宣稱可以實現任何願望，Alex開始胡亂許願，但也要完成CODE指定的任務「還願」，隨著願望越大，任務也越困難複雜，最後卻引發了一連串的犯罪事件。<br>",
+                    href: "../html_all/09/9-6.html"
+                },
+                {
+                    src: "../html_all/05/5-4.jpg",
+                    text: "劇名：生死接線員<br>導演：邱皓洲、王傳宗<br>編劇：劉梓潔、黃千芸、周曉鶯、鄧凱綸、洪裕淵、呂逸瑄、林昀姍、陳定寧、黃國甦、陳牧勻、吳可師<br>演員：曾少宗、劉倩妏、李杏、單承矩、邱震瀚<br>劇情大綱：在他們的工作領域中，唯有先死，後纔能有活路，「死去活來」是他們奉行的工作圭臬－－他們是器官捐贈協調師。利恆醫院護理師溫雨讀（劉倩妏飾），在接生完第一千個寶寶後，轉換工作跑道進入器官捐贈移植小組，也結識了移植外科中，行為像落入地球的外星艦長－－江君皓（曾少宗飾）醫師。利恆的器官協調小組經歷了一次次棘手的案例，看見生命的破滅與重生<br>",
+                    href: "../html_all/05/5-4.html"
+                },
+                {
+                    src: "../html_all/09/9-5.jpg",
+                    text: "劇名：輪到你了<br>導演：佐久間紀佳<br>編劇：福原充則<br>演員：原田知世、田中圭 <br>劇情大綱：隨着“交換殺人遊戲”的進行，住戶們也變得越發可疑。 他們在各自的房間裏，究竟都在幹些什麼……？ 打開各家的房門，以每個居民爲主人公，講述他們的日常和家庭生活。 奇妙的單身生活、婆媳大戰、母子之情、令人震驚的祕密、悲傷的過去、異常的執念…… 那裏或許就隱藏着揭開真相的線索<br>",
+                    href: "../html_all/09/9-5.html"
+                },
+                {
+                    src: "../html_all/04/4-1.jpg",
+                    text: "劇名：延禧攻略<br>導演：惠楷棟、溫德光<br>編劇：周末<br>演員：吳謹言、佘詩曼、秦嵐、聶遠、許凱、譚卓<br>劇情大綱：乾隆六年二月初二（公元1741年3月18日），包衣出身的魏瓔珞（ 吳謹言飾）為尋求親姐魏瓔寧死亡真相，入紫禁城為宮女，憑藉智慧成為富察皇后身邊的貼身宮女，富察皇后嫻於禮法，擔心瓔珞走上歧途，竭力給予她溫暖與幫助，在 感情上與她情同姊妹。在皇后的悉心教導下，魏瓔珞一步步成長為正直堅強的大宮女。後來富察皇后自殺身亡， 魏瓔珞發現皇后的死亡真相後，成為妃嬪，憑勇往直前的勇氣、機敏靈活的頭腦、寬廣博大的胸懷，為皇后報仇。同時也與乾隆從互相敵視到最終彼此理解、互相扶持，最終成為令懿皇后。<br>",
+                    href: "../html_all/04/4-1.html"
+                },
+                {
+                    src: "../html_all/01/1-3.jpg",
+                    text: "劇名：花千骨<br>導演：林玉芬、高林豹、梁勝權<br>編劇：Fresh果果、饒俊<br>演員：霍建華、趙麗穎、馬可、張丹峰、蔣欣、李純、徐海喬<br>劇情大綱：花千骨（趙麗穎 飾）曾經被長留上仙白子畫（霍建華 飾）所救，因此芳心暗許，長大之後，她千里迢迢前往長留仙山，想要找到當年的恩人。經過重重的考驗和比試，花千骨終於成爲了白子畫的座下弟子，然而她並不知道的是，自己命格詭異，註定要成爲白子畫的生死劫，而花千骨和白子畫兩人在相處的過程中，早已經產生了超越了師徒的感情。 墮仙夏紫薰（蔣欣 飾）亦深愛着白子畫，不願看到愛人爲花千骨白白送死的她企圖下毒殺死花千骨，沒想到最後中毒的卻是白子畫。爲了挽救白子畫的性命，花千骨想盡了一切方法，並且在無意之中獲得了洪荒之力，爲日後的悲劇埋下了伏筆。<br>",
+                    href: "../html_all/01/1-3.html"
+                },
+                {
+                    src: "../html_all/03/3-7.jpg",
+                    text: "劇名：花樣男子<br>導演：石井康晴、山室大輔、片山修<br>編劇：宅間孝行<br>演員：松本潤、井上真央、小栗旬、松田翔太、阿部力、松島菜菜子<br>劇情大綱：身背父母的期望，貧窮女牧野杉菜（井上真央飾）轉入了超級貴族學校英德學院，學生們被奢侈品環繞，上下等級懸殊不說，更讓本來就和同學們格格不入的杉菜鬱悶的是，學院整個被F4四人組控制，道明寺司（松本潤飾）、花澤類 （小栗旬飾）、西門総二郎（松田翔太飾）和美作明（阿部力飾），但凡惹到F4的人都難逃被死整的悲慘命運。 某日，實在看不過去道明寺飛揚跋扈的模樣，杉菜當場與其起了衝突，翌日便遭到了“紅紙條”的報復，危急時刻，杉菜屢屢被花澤類救下，杉菜鼓起勇氣向道明寺發起宣戰，與崇拜的姐姐椿（松島菜菜子飾）性情相似的杉菜的不屈不撓在道明寺的心中泛起了微瀾，他的心不知不覺被這個如雜草般頑強的女子佔據。 對衝動魯莽的道明寺無感，杉菜早已傾心於類，而類真正喜歡的卻是藤堂靜（佐田真由美飾），剪不斷理還亂的愛恨糾葛就此展開。<br>",
+                    href: "../html_all/03/3-7.html"
+                },
+                {
+                    src: "../html_all/04/4-8.jpg",
+                    text: "劇名：命中注定我愛你<br>導演：陳玉珊<br>編劇：陳玉珊<br>演員：陳喬恩、阮經天、陳楚河、白歆惠<br>劇情大綱：一對男女紀存希（阮經天飾）、陳欣怡（陳喬恩飾）在豪華旅行中共度一夜不小心懷孕後，經歷了不情願的婚姻，卻從中領悟到命運般的愛情之故事。<br>",
+                    href: "../html_all/04/4-8.html"
+                },
+
+            ];
+
+
+            //搜尋程式
+            var search = function() {
+                for (var i = 0; i < all.length; i++) {
+                    var $cw = $('<div class="list_each"><img class="img" src="05%25E9%2586%25AB%25E7%2599%2582%25E9%25A1%259E/5-6.png"><p class="content"></p><a href="" id="net"><h1>more</h1></a><div class="score"><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><div class="collection"><img src="../images/heart.png" /></div></div></div>');
+
+                    $cw.find('.img').attr('src', "all[i].src"); //尋找照片
+                    $cw.find('.content').text(all[i].text); //尋找內容
+                    $cw.find('#net').attr("href", "all[i].href"); //尋找more連結
+                    $('.drama_list').append($cw);
+                }
+
+            };
+            //search();
+
+            //搜尋程式
+            var update = function(key) {
+                search();
+                var $select = $('.list_each');
+                $select.hide();
+                for (var i = 0; i < all.length; i++) {
+                    if (all[i].text.indexOf(key) != -1) {
+                        console.log(all[i].text);
+                        $select.eq(i).show();
+                    }
+                }
+            };
+
+            //讀取input中的內容
+            $('.search>img').click(function() {
+                var $input = $('#input').val();
+                update($input);
+            });
+            //讀取自訂問答的選項
+            $('#question').click(function() {
+                $(this).each(function() {
+                    console.log($('this').text());
+                });
+            });
+
+
+
+
+            //點擊頭像出現框框
+            $('.member').click(function() {
+                if (member) {
+                    $member_data.hide();
+                    member = false;
+                } else {
+                    $member_data.show();
+                    $menu_data.hide();
+                    menu = false;
+                    member = true;
+                    $q.hide('slideUp');
+                    question = false;
+                    //新增
+                    $('#signin').hide();
+                    s = false;
+                }
+            });
+
+            //點擊選單出現框框
+            $('.menu').click(function() {
+                if (menu) {
+                    $menu_data.hide();
+                    menu = false;
+                } else {
+                    $menu_data.show();
+                    $member_data.hide();
+                    menu = true;
+                    member = false;
+                    $q.hide('slideUp');
+                    question = false;
+                }
+            });
+
+            //分類點下去會延伸
+            $('#sort').click(function() {
+                if (sort) {
+                    $sort_2.hide();
+                    $sort.text('+分類');
+                    $sort_2.css('width', '0px');
+                    $sort_2.css('height', '0px');
+                    $menu_data.css('height', '160px');
+                    $menu_data.css('width', '100px');
+                    sort = false;
+                } else {
+                    $sort_2.show();
+                    $sort.text('-分類');
+                    $sort_2.css('width', '130px');
+                    $sort_2.css('height', '140px');
+                    $menu_data.css('height', '310px');
+                    $menu_data.css('width', '130px');
+                    sort = true;
+                }
+            });
+
+            //對話框程式
+            // $('#open').click(function() {
+            //     if (question) {
+            //         $q.hide('slideUp');
+            //         question = false;
+            //     } else {
+            //         $q.show('slideDown');
+            //         question = true;
+            //         $menu_data.hide();
+            //         menu = false;
+            //         $member_data.hide();
+            //         member = false;
+            //     }
+            // });
+
+            // //隨機問題
+            // for (var i = 0; i < ask[Q].length; i++) {
+            //     $q.append('<p>' + ask[Q] + '</p>');
+            // }
+
+
+            //新增
+            $('.btn').disabled = true;
+
+            //登入頁面
+            $('#signin').hide();
+            var $si = $('#si');
+            var $signin = $('#signin');
+            var s = false;
+            $('#si').click(function() {
+                $('#signin').show();
+                s = true;
+                $member_data.hide();
+                member = false;
+            });
+
+            $('.in').focus(function() {
+                if ($('#Name').val() == "" && $('#Code').val() == "") {
+                    $("#go").attr("disabled", true); //將登入按鈕改為不可用
+                } else if ($('#Name').val() != "" && $('#Code').val() != "") {
+                    $("#go").attr("disabled", false); //將登入按鈕改為可用
+                }
+            });
+
+            $('#cancel').click(function() {
+                $("#go").attr("disabled", true);
+                $('#signin').hide();
+                s = false;
+            });
+            $('#go').click(function(e) {
+                $('#signin').hide();
+                s = false;
+                $('.comment_member p').text("達人 | " + $('#Name').val() + "說：");
+
+                e.preventDefault();
+                var source = {
+                    name: '',
+                    code: ''
+                };
+                source.name = $('#Name').val();
+                source.code = $('#Code').val();
+                if (localStorage) {
+                    localStorage.member = JSON.stringify(source);
+                }
+
+
+            });
+
+
+            if (localStorage.member) {
+                var m = JSON.parse(localStorage.member);
+                $('#Name').val(m.name);
+                $('#Code').val(m.code);
+                $('.comment_member p').text("達人 | " + $('#Name').val() + "說：");
+
+            }
+            //新增
+
+        }); //end ready
+
+    </script>
+</head>
+
+<body>
+
+    <!--header-->
+    <div class="header">
+        <div class="menu">
+            <img src="../images/open-menu.png" />
+        </div>
+        <div class="logo">
+            <p>劇荒了嗎</p>
+        </div>
+        <div class="search">
+
+            <img src="../images/search.png" />
+            <input class="search" id="input">
+        </div>
+        <!-- <div class="find" id="open">
+            <p>幫我找</p>
+            --------------------------------------    幫我找的對話框------------------------------------------------------
+            <div id="question" title="問題">
+            </div>
+        </div> -->
+
+        <div class="member">
+            <img src="../images/user.png" />
+        </div>
+    </div>
+
+    <!--    登入視窗-->
+    <div id="signin">
+        <p>帳號:</p><input id="Name" class="in">
+        <p>密碼:</p><input id="Code" class="in">
+        <button class="btn" id="go">登入</button>
+        <button class="btn" id="cancel">取消</button>
+    </div>
+
+    <!--    頭像下的框框-->
+    <div id="member_data">
+        <a href="../html_all/save.html">
+            <p>-我的收藏-</p>
+        </a>
+        <p id="si">-登入-</p>
+    </div>
+
+    <!--    左邊選單-->
+    <div id="menu_data">
+        <a href="drama_list%20(new).html">
+            <p>-最新</p>
+        </a>
+        <a href="drama_list%20(hot).html">
+            <p>-最熱</p>
+        </a>
+        <p id="sort">+分類</p>
+        <div id="sort_2">
+            <a href="../html_all/drama_list(country).html">
+                <p>-國家</p>
+            </a>
+            <a href="../html_all/drama_list(style).html">
+                <p>-類型</p>
+            </a>
+            <a href="../html_all/drama_list(episode).html">
+                <p>-集數</p>
+            </a>
+            <a href="../html_all/drama_list(start).html">
+                <p>-上映時間</p>
+            </a>
+        </div>
+        <a href="drama_list(best)%20.html">
+            <p>-精選</p>
+        </a>
+    </div>
+    <!--header-->
+
+
+    <div class="drama_list">
+        <div class="list_title">
+            <p>精選</p>
+        </div>
+        <!------------------------------------>
+        <div class="list_each">
+            <img src="../html_all/01/1-6.jpeg">
+            <p>
+                劇名：德魯納酒店<br>導演：吳忠煥<br>編劇：洪貞恩、洪美蘭<br>演員：李知恩、呂珍九、申正根、裴海善<br>劇情大綱：首爾市內變化最大的市中心正中間，位置於黃金寶地 — 明洞的古老破舊建築物，乍一看就像準備重建的空建築物，但仔細地看的話，其實是經營中的酒店。如果早上的話，在那前面有數百萬的流動人口經過，卻幾乎沒有客人進入那酒店裡面。而在開始入夜、路上變得更冷清、市中心也入睡之時，招牌便亮著燈光，酒店樓層亦會升高的....德魯納酒店。靈賓專用的德魯納酒店裡，超精英酒店管理人又軟弱具燦星擔任著總經理，和乖戾、脾氣暴躁的社長張滿月一起，為特別的靈魂客人們提供特級服務時發生的故事。<br>
+            </p>
+            <h1><a href="../html_all/01/1-6.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/03/3-9.jpg">
+            <p>
+                劇名：想見你<br>導演：黃天仁<br>編劇：簡奇峯、林欣慧<br>演員：柯佳嬿、許光漢、施柏宇、顏毓麟<br>劇情大綱：27歲上班族黃雨萱（柯佳嬿飾），因對前男友王詮勝（許光漢飾）的思念，意外靈魂穿越回到1998年台南，變成17歲的女高中生陳韻如（柯佳嬿飾），卻遇見和前男友長得一模一樣的李子維（許光漢飾），以及始終暗戀著陳韻如的暖男莫俊傑（施柏宇飾），展開一連串浪漫虐心又懸疑難解的故事。
+                <br>
+            </p>
+            <h1><a href="../html_all/03/3-9.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/09/9-6.jpg">
+            <p>
+                劇名：CODE浮士德遊戲<br>導演：詹大為<br>編劇：涂芳祥、藍夢荷、邵慧婷<br>演員：吳慷仁、謝沛恩、賈孝國、張翰<br>劇情大綱：Alex（吳慷仁飾）只是一個平凡且工作能力平平的銀行理財專員，因想讓未婚妻（謝沛恩飾）以後過上有錢的好日子，聽信了公司的內線消息，卻一夜之間賠掉將近一半的存款積蓄，此時出現了謎樣的APP「CODE」，此APP宣稱可以實現任何願望，Alex開始胡亂許願，但也要完成CODE指定的任務「還願」，隨著願望越大，任務也越困難複雜，最後卻引發了一連串的犯罪事件。<br>
+            </p>
+            <h1><a href="../html_all/09/9-6.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/05/5-4.jpg">
+            <p>
+                劇名：生死接線員<br>導演：邱皓洲、王傳宗<br>編劇：劉梓潔、黃千芸、周曉鶯、鄧凱綸、洪裕淵、呂逸瑄、林昀姍、陳定寧、黃國甦、陳牧勻、吳可師<br>演員：曾少宗、劉倩妏、李杏、單承矩、邱震瀚<br>劇情大綱：在他們的工作領域中，唯有先死，後纔能有活路，「死去活來」是他們奉行的工作圭臬－－他們是器官捐贈協調師。利恆醫院護理師溫雨讀（劉倩妏飾），在接生完第一千個寶寶後，轉換工作跑道進入器官捐贈移植小組，也結識了移植外科中，行為像落入地球的外星艦長－－江君皓（曾少宗飾）醫師。利恆的器官協調小組經歷了一次次棘手的案例，看見生命的破滅與重生<br>
+            </p>
+            <h1><a href="../html_all/05/5-4.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/09/9-5.jpg">
+            <p>
+                劇名：輪到你了<br>導演：佐久間紀佳<br>編劇：福原充則<br>演員：原田知世、田中圭 <br>劇情大綱：隨着“交換殺人遊戲”的進行，住戶們也變得越發可疑。 他們在各自的房間裏，究竟都在幹些什麼……？ 打開各家的房門，以每個居民爲主人公，講述他們的日常和家庭生活。 奇妙的單身生活、婆媳大戰、母子之情、令人震驚的祕密、悲傷的過去、異常的執念…… 那裏或許就隱藏着揭開真相的線索<br>
+            </p>
+            <h1><a href="../html_all/09/9-5.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/04/4-1.jpg">
+            <p>
+                劇名：延禧攻略<br>導演：惠楷棟、溫德光<br>編劇：周末<br>演員：吳謹言、佘詩曼、秦嵐、聶遠、許凱、譚卓<br>劇情大綱：乾隆六年二月初二（公元1741年3月18日），包衣出身的魏瓔珞（ 吳謹言飾）為尋求親姐魏瓔寧死亡真相，入紫禁城為宮女，憑藉智慧成為富察皇后身邊的貼身宮女，富察皇后嫻於禮法，擔心瓔珞走上歧途，竭力給予她溫暖與幫助，在 感情上與她情同姊妹。在皇后的悉心教導下，魏瓔珞一步步成長為正直堅強的大宮女。後來富察皇后自殺身亡， 魏瓔珞發現皇后的死亡真相後，成為妃嬪，憑勇往直前的勇氣、機敏靈活的頭腦、寬廣博大的胸懷，為皇后報仇。同時也與乾隆從互相敵視到最終彼此理解、互相扶持，最終成為令懿皇后。<br>
+            </p>
+            <a href="https://www.youtube.com/?gl=TW&hl=zh-tw" id="net">
+                <h1><a href="../html_all/04/4-1.html">
+                        more</a>
+                </h1>
+            </a>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/01/1-3.jpg">
+            <p>
+                劇名：花千骨<br>導演：林玉芬、高林豹、梁勝權<br>編劇：Fresh果果、饒俊<br>演員：霍建華、趙麗穎、馬可、張丹峰、蔣欣、李純、徐海喬<br>劇情大綱：花千骨（趙麗穎 飾）曾經被長留上仙白子畫（霍建華 飾）所救，因此芳心暗許，長大之後，她千里迢迢前往長留仙山，想要找到當年的恩人。經過重重的考驗和比試，花千骨終於成爲了白子畫的座下弟子，然而她並不知道的是，自己命格詭異，註定要成爲白子畫的生死劫，而花千骨和白子畫兩人在相處的過程中，早已經產生了超越了師徒的感情。 墮仙夏紫薰（蔣欣 飾）亦深愛着白子畫，不願看到愛人爲花千骨白白送死的她企圖下毒殺死花千骨，沒想到最後中毒的卻是白子畫。爲了挽救白子畫的性命，花千骨想盡了一切方法，並且在無意之中獲得了洪荒之力，爲日後的悲劇埋下了伏筆。<br>
+            </p>
+            <h1><a href="../html_all/01/1-3.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+
+        </div>
+
+
+        <div class="list_each">
+            <img src="../html_all/03/3-7.jpg">
+            <p>
+                劇名：花樣男子<br>導演：石井康晴、山室大輔、片山修<br>編劇：宅間孝行<br>演員：松本潤、井上真央、小栗旬、松田翔太、阿部力、松島菜菜子<br>劇情大綱：身背父母的期望，貧窮女牧野杉菜（井上真央飾）轉入了超級貴族學校英德學院，學生們被奢侈品環繞，上下等級懸殊不說，更讓本來就和同學們格格不入的杉菜鬱悶的是，學院整個被F4四人組控制，道明寺司（松本潤飾）、花澤類 （小栗旬飾）、西門総二郎（松田翔太飾）和美作明（阿部力飾），但凡惹到F4的人都難逃被死整的悲慘命運。 某日，實在看不過去道明寺飛揚跋扈的模樣，杉菜當場與其起了衝突，翌日便遭到了“紅紙條”的報復，危急時刻，杉菜屢屢被花澤類救下，杉菜鼓起勇氣向道明寺發起宣戰，與崇拜的姐姐椿（松島菜菜子飾）性情相似的杉菜的不屈不撓在道明寺的心中泛起了微瀾，他的心不知不覺被這個如雜草般頑強的女子佔據。 對衝動魯莽的道明寺無感，杉菜早已傾心於類，而類真正喜歡的卻是藤堂靜（佐田真由美飾），剪不斷理還亂的愛恨糾葛就此展開。<br>
+            </p>
+            <h1><a href="../html_all/03/3-7.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/04/4-8.jpg">
+            <p>
+                劇名：命中注定我愛你<br>導演：陳玉珊<br>編劇：陳玉珊<br>演員：陳喬恩、阮經天、陳楚河、白歆惠<br>劇情大綱：一對男女紀存希（阮經天飾）、陳欣怡（陳喬恩飾）在豪華旅行中共度一夜不小心懷孕後，經歷了不情願的婚姻，卻從中領悟到命運般的愛情之故事。<br>
+            </p>
+            <h1><a href="../html_all/04/4-8.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+        <!---------------------------------->
+
+        <!--
+        <div class="more_drama">
+            <hr><p>更多最新</p>
+            <img  id="list_left" src="../images/back.png"/>
+            <img/>
+            <img/>
+            <img/>
+            <img id="list_right" src="../images/next.png"/>
+        </div>
+-->
+        <!-- <div class="flexslider carousel">
+            <ul class="slides">
+                <li>
+                    <img src="../html_all/02/2-1.jpg" />
+                </li>
+                <li>
+                    <img src="../html_all/07/7-2.jpg" />
+                </li>
+                <li>
+                    <img src="../html_all/08/8-7.jpg" />
+                </li>
+                <li>
+                    <img src="../html_all/08/8-3.jpg" />
+                </li>
+                items mirrored twice, total of 12
+            </ul>
+        </div>-->
+    </div>
+
+
+
+
+</body>
+
+</html>

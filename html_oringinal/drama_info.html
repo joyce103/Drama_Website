@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/header.css">
+    
+    
+    
+<!--    這-->
+    <link rel="stylesheet" href="../css/info.css">
+<!--    這-->
+
+   
+   
+    <!--    <link rel="stylesheet" href="../css/list.css">-->
+    <title>劇荒了嗎</title>
+    
+    
+    
+    
+<!--        這-->
+    <script src="../_js/jquery.min.js"></script>
+<script>
+
+	$(document).ready(function() {
+        // body...
+        
+        // $('#star1').mouseenter(function(){
+        //     $('#star1').hide();
+        //     $('#starshine1').show();
+        // }).mouseout(function(){
+        //     $('#star1').show();
+        //     $('#starshine1').hide();
+        // });
+        
+        $('#star1').click(function(){
+            $('#star1').hide();
+            $('#starshine1').show();
+            });
+        $('#starshine1').click(function(){
+            $('#star1').show();
+            $('#star2').show();
+            $('#star3').show();
+            $('#star4').show();
+            $('#star5').show();
+            $('#starshine1').hide();
+            $('#starshine2').hide();
+            $('#starshine3').hide();
+            $('#starshine4').hide();
+            $('#starshine5').hide();
+            });
+        $('#star2').click(function(){
+            $('#star1').hide();
+            $('#star2').hide();
+            $('#starshine1').show();
+            $('#starshine2').show();
+            });
+        $('#starshine2').click(function(){
+            $('#star2').show();
+            $('#star3').show();
+            $('#star4').show();
+            $('#star5').show();
+            $('#starshine2').hide();
+            $('#starshine3').hide();
+            $('#starshine4').hide();
+            $('#starshine5').hide();
+            });
+        $('#star3').click(function(){
+            $('#star1').hide();
+            $('#star2').hide();
+            $('#star3').hide();
+            $('#starshine1').show();
+            $('#starshine2').show();
+            $('#starshine3').show();
+            });
+        $('#starshine3').click(function(){
+            $('#star3').show();
+            $('#star4').show();
+            $('#star5').show();
+            $('#starshine3').hide();
+            $('#starshine4').hide();
+            $('#starshine5').hide();
+            });
+        $('#star4').click(function(){
+             $('#star1').hide();
+            $('#star2').hide();
+            $('#star3').hide();
+            $('#star4').hide();
+            $('#starshine1').show();
+            $('#starshine2').show();
+            $('#starshine3').show();
+            $('#starshine4').show();
+            });
+        $('#starshine4').click(function(){
+            $('#star4').show();
+            $('#star5').show();
+            $('#starshine4').hide();
+            $('#starshine5').hide();
+            });
+        $('#star5').click(function(){
+            $('#star1').hide();
+            $('#star2').hide();
+            $('#star3').hide();
+            $('#star4').hide();
+            $('#star5').hide();
+            $('#starshine1').show();
+            $('#starshine2').show();
+            $('#starshine3').show();
+            $('#starshine4').show();
+            $('#starshine5').show();
+            });
+        $('#starshine5').click(function(){
+            $('#star5').show();
+            $('#starshine5').hide();
+            });
+
+        $('#heart').click(function(){
+            $('#like').show();
+            $('#heart').hide();
+        });
+         $('#like').click(function(){
+            $('#like').hide();
+            $('#heart').show();
+        });
+
+         //評論區提交
+         $('#submit').click(function(){
+            var $item=$(this).closest('.comment_area');
+            var content=$('#ta').val();
+            var $comment_item=$('<div class="comment"><div class="comment_member"><p>達人 | bring_bring_103說：</p><img id="comment_user" src="../images/user.png"/><div class="comment_text"></div></div><hr></div>');
+            $comment_item.find('.comment_text').text(content);
+            $('#c').append($comment_item);
+         });
+    });
+   
+	
+</script>
+<!--這-->
+
+
+
+
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="menu">
+            <img src="../images/open-menu.png" />
+        </div>
+        <div class="logo">
+            <p>劇荒了嗎</p>
+        </div>
+        <div class="search">
+            <img src="../images/search.png" />
+        </div>
+        <div class="find">
+            <p>幫我找</p>
+        </div>
+        <div class="member">
+            <img src="../images/user.png" />
+        </div>
+    </div>
+
+    <div class="drama_info">
+        <h2>Drama Name</h2>
+        
+        
+        <!--        這-->
+        <div class="score" title="點選星星進行評分">
+            <img id="star1" class="star" src="../images/favorite.png" />
+            <img id="starshine1" class="starshine" src="../images/star.png"/>
+            <img id="star2" class="star"  src="../images/favorite.png" />
+            <img id="starshine2" class="starshine" src="../images/star.png"/>
+            <img id="star3" class="star"  src="../images/favorite.png" />
+            <img id="starshine3" class="starshine" src="../images/star.png"/>
+            <img id="star4" class="star"  src="../images/favorite.png" />
+            <img id="starshine4" class="starshine" src="../images/star.png"/>
+            <img id="star5" class="star"  src="../images/favorite.png" />
+            <img id="starshine5" class="starshine" src="../images/star.png"/>
+                <div class="collection">
+                    <img id="heart" src="../images/heart.png" />
+                    <img id="like" class="starshine"src="../images/heart-2.png" />
+                </div>
+        </div>
+        <!--        這-->
+        
+        
+        
+        <hr>
+        <div class="drama_pic">
+            <img />
+        </div>
+        <div class="drama_intro">
+            <p>導演：<br>編劇：<br>演員：<br>劇情大綱：<br>上映日期：<br>每集時長：<br>集數：</p>
+        </div>
+        <div class="drama_source">
+            <hr>
+            <div class="source_title">
+                <p>片源推薦</p>
+            </div>
+            <div>
+                <div class="source_name">
+                    <p>愛奇藝</p>
+                    <h3>每週一更新</h3>
+                </div>
+                <div class="source_name">
+                    <p>愛奇藝</p>
+                    <h3>每週一更新</h3>
+                </div>
+                <div class="source_name">
+                    <p>愛奇藝</p>
+                    <h3>每週一更新</h3>
+                </div>
+                <hr>
+            </div>
+            <div>
+                <div class="source_name_b">
+                    <p>愛奇藝</p>
+                    <h3>每週一更新</h3>
+                </div>
+                <div class="source_name_b">
+                    <p>愛奇藝</p>
+                    <h3>每週一更新</h3>
+                </div>
+                <hr>
+            </div>
+        </div>
+        
+        
+        
+        <!--        這-->
+        <div class="drama_comment">
+            <p>劇迷討論區</p>
+            <div class="comment_border">
+                <div class="comment">
+                <div class="comment_member">
+                    <p>達人     | bring_bring_103說：</p>
+                    <img id="comment_user" src="../images/user.png"/>
+                    <div class="comment_text"></div>
+                </div>
+<!--                <div class="comment_star">
+                    <img id="comment_star" src="../images/favorite.png"/>
+                    <p>4.5</p>
+                </div> -->
+                <hr>
+            </div>
+            <div id="c">
+
+            </div>
+
+                
+            </div>
+            <div class="comment_area">
+                
+                <label class="taa">我要評論：</label>
+                <div ><textarea id="ta"  name="commet"></textarea></div>
+                <input  id="submit" type="submit" value="提交">
+            
+            </div>
+
+        </div>
+        <!--        這-->
+        
+        
+        
+    </div>
+
+</body>
+
+</html>

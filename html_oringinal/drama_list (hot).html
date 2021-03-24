@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+
+</style>
+
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/list.css">
+    <link rel="stylesheet" href="../woocommerce-FlexSlider-690832b/flexslider.css" type="text/css">
+    <script src="../_js/jquery.min.js"></script>
+    <script src="../woocommerce-FlexSlider-690832b/jquery.flexslider.js"></script>
+    <title>劇荒了嗎</title>
+    <script>
+        $(window).load(function() {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                animationLoop: false,
+                itemWidth: 400,
+                itemMargin: 5
+            });
+        });
+        $(document).ready(function() {
+            //宣告問題陣列
+            var ask = [
+                [
+                    "<h3>Q1:故事類型</h3>",
+                    "<p>A:美食</p>",
+                    "<p>A:職人</p>",
+                    "<p>A:旅遊</p>",
+                    "<p>A:其他</p>",
+                    "<h3>Q2:集數</h3>",
+                    "<p>A:1-10</p>",
+                    "<p>A:11-20</p>",
+                    "<p>A:20-40</p>",
+                    "<p>A:40以上</p>"
+                ],
+                [
+                    "<h3>Q1:戲劇背景</h3>",
+                    "<p>A:青春校園</p>",
+                    "<p>A:都市職場</p>",
+                    "<p>A:鄉村休閒</p>",
+                    "<p>A:古裝</p>",
+                    "<p>A:奇幻</p>",
+                    "<h3>Q2:男女主角關係</h3>",
+                    "<p>A:學長學妹</p>",
+                    "<p>A:姊弟戀</p>",
+                    "<p>A:大叔戀</p>",
+                    "<p>A:其他</p>"
+                ],
+                [
+                    "<h3>Q1:分級制度</h3>",
+                    "<p>A:普遍級</p>",
+                    "<p>A:保護級</p>",
+                    "<p>A:輔12級</p>",
+                    "<p>A:輔導級</p>",
+                    "<p>A:限制級</p>",
+                    "<h3>Q2:請選擇類型</h3>",
+                    "<p>A:真人真事</p>",
+                    "<p>A:小說改編</p>",
+                    "<p>A:其他</p>"
+                ]
+
+            ]
+            //宣告隨機亂數讓每次的問題都不同
+            var Q = Math.floor((Math.random() * 3) + 0);
+            //宣告jQ函數
+            var $member_data = $('#member_data'); //頭像
+            var $menu_data = $('#menu_data'); //左邊選單
+            var $sort = $('#sort'); //選單分類
+            var $sort_2 = $('#sort_2'); //選單分類分支
+            var $q = $('#question');
+            //判斷div是否有顯示有顯示true沒顯示false
+            var member = false;
+            var menu = false;
+            var sort = false;
+            var question = false;
+            //最一開始將沒有要顯示的div隱藏
+            $('.four').hide();
+            $('#member_data').hide();
+            $('#menu_data').hide();
+            $('#sort_2').hide();
+            $('#question').hide();
+            var all = [{
+                    src: "../html_all/09/9-3.png",
+                    text: "劇名：李屍朝鮮<br>導演：金成勳<br>編劇：金銀姬<br>演員：朱智勛、柳承龍、裴斗娜、金相浩、陳善奎<br>劇情大綱：6世紀末日本入侵朝鮮數年後的朝鮮王朝，王世子李蒼想見臥病在床十多天的父王，卻一直被宮人阻撓，直覺宮中有不可告人秘密。為追尋真相，李蒼微服暗訪醫治其父王的醫員，卻發現一場恐怖瘟疫正全國擴散，染疫的人會死而復活，變得非常嗜血及人肉，整個朝鮮正陷入一場滅亡危機。<br>",
+                    href: "../html_all/09/9-3.html"
+                },
+                {
+                    src: "../html_all/08/8-4.png",
+                    text: "劇名：末日列車<br>導演：朴智元、艾麗莎·巴赫納、麥肯齊·唐納森、霍利·雷德福<br>編劇：奉俊昊 、凱利·馬斯特森<br>演員：戴維德·迪格斯、珍妮佛·康納莉、米琪·薩姆納、安娜麗絲·巴索、薩沙·弗若洛娃<br>劇情大綱：021年，此時距離地球變成冰凍荒野已經過去7年，殘存的人類居住在環繞地球不停運行的巨大火車裡。本劇藉此探討了有關階級鬥爭、社會不公及生存政治等議題。<br>",
+                    href: "../html_all/08/8-4.html"
+                },
+                {
+                    src: "../html_all/06/6-4.jpg",
+                    text: "劇名：月之戀人－步步驚心：麗<br>導演：金圭泰<br>編劇：趙允英<br>演員：李準基、李知恩、姜河那、洪宗玄、邊伯賢、金志洙、徐朱玄、南柱赫、尹善宇<br>劇情大綱：根據中國原創小說翻拍的同名電視劇《步步驚心》改編，講述生活在21世紀的女子高夏真（李知恩飾）某天為了解救意外落水的小男孩跳進湖中，結果溺水同時發生日全蝕現象，靈魂穿越到高麗王朝附身在少女解樹身上，和四皇子王昭（李準基飾）之間的浪漫愛情故事，以及高麗宮廷火熱的王權競爭。<br>",
+                    href: "../html_all/06/6-4.html"
+                },
+                {
+                    src: "../html_all/03/3-3.jpg",
+                    text: "劇名：漢娜的遺言<br>導演：凱爾·帕特里克·奧瓦內茲（第一季）、湯姆·麥卡錫、海倫·謝費（第二季）、麥克·莫里斯（第三季）<br>編劇：布萊恩·佑奇、黛安娜·孫（第1季)、湯姆·麥卡錫、喬伊·戈曼·威托斯、 史提夫·高林、邁克爾·蘇格、席琳娜·戈梅茲、曼蒂·提費、克莉絲朵·雷布林<br>演員：狄倫·明尼特、凱薩琳·蘭福德、克利斯汀·納瓦羅、艾莉莎·布爾、布蘭登·弗林<br>劇情大綱：一名青少年漢娜·貝克（凱薩琳·蘭福德 飾演）突然割腕自殺身亡後，讓親友們震驚不已，些許時日後，漢娜的朋友克雷·詹森（狄倫·明尼特 飾演）卻收到她死前錄製的一系列錄音帶，錄音內容是她親口揭露為何會選擇走上絕路，造就這場悲劇的十三個原因，而背後的黑暗秘密，也將逐漸攤在陽光下<br>",
+                    href: "../html_all/03/3-3.html"
+                },
+                {
+                    src: "../html_all/02/2-2.jpeg",
+                    text: "劇名：犀利人妻<br>導演：徐輔軍<br>編劇：楊海薇、王珮華<br>演員：隋棠、溫昇豪、朱芯儀、宥勝<br>劇情大綱：溫瑞凡（溫昇豪飾）與謝安真（隋棠飾）育有一女，婚姻原本是幸福美滿，卻因第三者的介入破壞了原有的幸福。瑞凡深深愛上了安真的遠房親戚薇恩。安真要如何面對她婚姻中這突如其來的改變？<br>",
+                    href: "../html_all/02/2-2.html"
+                },
+                {
+                    src: "../html_all/08/8-1.jpg",
+                    text: "劇名：紳探<br>導演：鄧科、高琮凱<br>編劇：陸宣、貢小白<br>演員：白宇、尤靖茹<br>劇情大綱：三十年代的上海，歌舞昇平、紙醉金迷，當人們沉醉在睡夢中的時候，一樁樁離奇的案件在城市的某個角落悄悄發生。剛從警校畢業的美麗女子秦小曼懷著成為一名出色警探的理想，來到英租界，住進了沙利文公寓，與屢破奇案、名聲大噪的警局探案顧問--神探羅非，成了鄰居和同事。開始兩個人性格不合，一見面就成了「冤家」，卻在陰差陽錯下不得不一起聯手破案。<br>",
+                    href: "../html_all/08/8-1.html"
+                },
+                {
+                    src: "../html_all/09/9-1.jpg",
+                    text: "劇名：怪奇物語<br>導演：艾莉森·塔特拉克<br>編劇：杜夫兄弟、肖恩·利維、丹·科恩、卡爾·加達賽克、辛蒂·荷蘭、麥特·陶諾爾、布萊恩·萊特<br>演員：薇諾娜·瑞德、大衛·哈伯、芬恩·沃夫哈德、米莉·芭比·布朗<br>劇情大綱：發生在1980年代，位於美國印第安納州的一座虛構城鎮霍金斯鎮（英語：Hawkins），鎮上的一座美國能源部名下的政府實驗室，涉及著跟超常現象跟超自然現象有關的機密實驗，當中還包含許多不為人知的人體實驗樣本。實驗人員在無意間開啟一條通往稱作「顛倒世界」（英語：Upside Down）的另一維度之傳送門，該維度所造成的危害隨著時間推及而波及到霍金斯鎮上的市民。<br>",
+                    href: "../html_all/09/9-1.html"
+                },
+                {
+                    src: "../html_all/04/4-7.jpg",
+                    text: "劇名：必娶女人<br>導演：于中中<br>編劇：簡奇峯、林欣慧<br>演員：邱澤、柯佳嬿、曾之喬、張懷秋<br>劇情大綱：蔡環真（柯佳嬿飾）是個不論工作或是愛情都不擇手段、勢在必得的「必取」女人。在與反目成仇的高中閨密─郝勝男（曾之喬飾）狹路重逢後，蔡環真決心搶走郝勝男的男人─郝萌（邱澤飾）做為報復，殊不知郝萌其實是勝男情急之下抓來假扮男友的親哥哥！不甘心被環真欺騙的郝萌，決定將計就計，與環真展開了一場你來我往、勢均力敵的愛情攻防戰。<br>",
+                    href: "../html_all/04/4-7.html"
+                }
+
+            ];
+
+
+            //搜尋程式
+            var search = function() {
+                for (var i = 0; i < all.length; i++) {
+                    var $cw = $('<div class="list_each"><img class="img" src="05%25E9%2586%25AB%25E7%2599%2582%25E9%25A1%259E/5-6.png"><p class="content"></p><a href="" id="net"><h1>more</h1></a><div class="score"><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><img src="../images/favorite.png" /><div class="collection"><img src="../images/heart.png" /></div></div></div>');
+
+                    $cw.find('.img').attr('src', "all[i].src"); //尋找照片
+                    $cw.find('.content').text(all[i].text); //尋找內容
+                    $cw.find('#net').attr("href", "all[i].href"); //尋找more連結
+                    $('.drama_list').append($cw);
+                }
+
+            };
+            //search();
+
+            //搜尋程式
+            var update = function(key) {
+                search();
+                var $select = $('.list_each');
+                $select.hide();
+                for (var i = 0; i < all.length; i++) {
+                    if (all[i].text.indexOf(key) != -1) {
+                        console.log(all[i].text);
+                        $select.eq(i).show();
+                    }
+                }
+            };
+
+            //讀取input中的內容
+            $('.search>img').click(function() {
+                var $input = $('#input').val();
+                update($input);
+            });
+            //讀取自訂問答的選項
+            $('#question').click(function() {
+                $(this).each(function() {
+                    console.log($('this').text());
+                });
+            });
+
+
+
+
+            //點擊頭像出現框框
+            $('.member').click(function() {
+                if (member) {
+                    $member_data.hide();
+                    member = false;
+                } else {
+                    $member_data.show();
+                    $menu_data.hide();
+                    menu = false;
+                    member = true;
+                    $q.hide('slideUp');
+                    question = false;
+                    //新增
+                    $('#signin').hide();
+                    s = false;
+                }
+            });
+
+            //點擊選單出現框框
+            $('.menu').click(function() {
+                if (menu) {
+                    $menu_data.hide();
+                    menu = false;
+                } else {
+                    $menu_data.show();
+                    $member_data.hide();
+                    menu = true;
+                    member = false;
+                    $q.hide('slideUp');
+                    question = false;
+                }
+            });
+
+            //分類點下去會延伸
+            $('#sort').click(function() {
+                if (sort) {
+                    $sort_2.hide();
+                    $sort.text('+分類');
+                    $sort_2.css('width', '0px');
+                    $sort_2.css('height', '0px');
+                    $menu_data.css('height', '160px');
+                    $menu_data.css('width', '100px');
+                    sort = false;
+                } else {
+                    $sort_2.show();
+                    $sort.text('-分類');
+                    $sort_2.css('width', '130px');
+                    $sort_2.css('height', '140px');
+                    $menu_data.css('height', '310px');
+                    $menu_data.css('width', '130px');
+                    sort = true;
+                }
+            });
+
+            //對話框程式
+            // $('#open').click(function() {
+            //     if (question) {
+            //         $q.hide('slideUp');
+            //         question = false;
+            //     } else {
+            //         $q.show('slideDown');
+            //         question = true;
+            //         $menu_data.hide();
+            //         menu = false;
+            //         $member_data.hide();
+            //         member = false;
+            //     }
+            // });
+
+            // //隨機問題
+            // for (var i = 0; i < ask[Q].length; i++) {
+            //     $q.append(ask[Q][i]);
+            // }
+
+
+            //新增
+            $('.btn').disabled = true;
+
+            //登入頁面
+            $('#signin').hide();
+            var $si = $('#si');
+            var $signin = $('#signin');
+            var s = false;
+            $('#si').click(function() {
+                $('#signin').show();
+                s = true;
+                $member_data.hide();
+                member = false;
+            });
+
+            $('.in').focus(function() {
+                if ($('#Name').val() == "" && $('#Code').val() == "") {
+                    $("#go").attr("disabled", true); //將登入按鈕改為不可用
+                } else if ($('#Name').val() != "" && $('#Code').val() != "") {
+                    $("#go").attr("disabled", false); //將登入按鈕改為可用
+                }
+            });
+
+            $('#cancel').click(function() {
+                $("#go").attr("disabled", true);
+                $('#signin').hide();
+                s = false;
+            });
+            $('#go').click(function(e) {
+                $('#signin').hide();
+                s = false;
+                $('.comment_member p').text("達人 | " + $('#Name').val() + "說：");
+
+                e.preventDefault();
+                var source = {
+                    name: '',
+                    code: ''
+                };
+                source.name = $('#Name').val();
+                source.code = $('#Code').val();
+                if (localStorage) {
+                    localStorage.member = JSON.stringify(source);
+                }
+
+
+            });
+
+
+            if (localStorage.member) {
+                var m = JSON.parse(localStorage.member);
+                $('#Name').val(m.name);
+                $('#Code').val(m.code);
+                $('.comment_member p').text("達人 | " + $('#Name').val() + "說：");
+
+            }
+            //新增
+
+        }); //end ready
+
+    </script>
+</head>
+
+<body>
+
+    <!--header-->
+    <div class="header">
+        <div class="menu">
+            <img src="../images/open-menu.png" />
+        </div>
+        <div class="logo">
+            <p>劇荒了嗎</p>
+        </div>
+        <div class="search">
+
+            <img src="../images/search.png" />
+            <input class="search" id="input">
+        </div>
+        <!-- <div class="find" id="open">
+            <p>幫我找</p>
+
+        </div>
+        --------------------------------------    幫我找的對話框------------------------------------------------------
+        <div id="question" title="問題">
+        </div> -->
+        <div class="member">
+            <img src="../images/user.png" />
+        </div>
+    </div>
+
+    <!--    登入視窗-->
+    <div id="signin">
+        <p>帳號:</p><input id="Name" class="in">
+        <p>密碼:</p><input id="Code" class="in">
+        <button class="btn" id="go">登入</button>
+        <button class="btn" id="cancel">取消</button>
+    </div>
+
+    <!--    頭像下的框框-->
+    <div id="member_data">
+        <a href="../html_all/save.html">
+            <p>-我的收藏-</p>
+        </a>
+        <p id="si">-登入-</p>
+    </div>
+
+    <!--    左邊選單-->
+    <div id="menu_data">
+        <a href="drama_list%20(new).html">
+            <p>-最新</p>
+        </a>
+        <a href="drama_list%20(hot).html">
+            <p>-最熱</p>
+        </a>
+        <p id="sort">+分類</p>
+        <div id="sort_2">
+            <a href="../html_all/drama_list(country).html">
+                <p>-國家</p>
+            </a>
+            <a href="../html_all/drama_list(style).html">
+                <p>-類型</p>
+            </a>
+            <a href="../html_all/drama_list(episode).html">
+                <p>-集數</p>
+            </a>
+            <a href="../html_all/drama_list(start).html">
+                <p>-上映時間</p>
+            </a>
+        </div>
+        <a href="drama_list(best)%20.html">
+            <p>-精選</p>
+        </a>
+    </div>
+    <!--header-->
+
+
+    <div class="drama_list">
+        <div class="list_title">
+            <p>最熱</p>
+        </div>
+        <!------------------------------------>
+        <div class="list_each">
+            <img src="../html_all/09/9-3.png">
+            <p>
+                劇名：李屍朝鮮<br>導演：金成勳<br>編劇：金銀姬<br>演員：朱智勛、柳承龍、裴斗娜、金相浩、陳善奎<br>劇情大綱：6世紀末日本入侵朝鮮數年後的朝鮮王朝，王世子李蒼想見臥病在床十多天的父王，卻一直被宮人阻撓，直覺宮中有不可告人秘密。為追尋真相，李蒼微服暗訪醫治其父王的醫員，卻發現一場恐怖瘟疫正全國擴散，染疫的人會死而復活，變得非常嗜血及人肉，整個朝鮮正陷入一場滅亡危機。<br>
+            </p>
+            <h1><a href="../html_all/09/9-3.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/08/8-4.png">
+            <p>
+                劇名：末日列車<br>導演：朴智元、艾麗莎·巴赫納、麥肯齊·唐納森、霍利·雷德福<br>編劇：奉俊昊 、凱利·馬斯特森<br>演員：戴維德·迪格斯、珍妮佛·康納莉、米琪·薩姆納、安娜麗絲·巴索、薩沙·弗若洛娃<br>劇情大綱：021年，此時距離地球變成冰凍荒野已經過去7年，殘存的人類居住在環繞地球不停運行的巨大火車裡。本劇藉此探討了有關階級鬥爭、社會不公及生存政治等議題。<br>
+            </p>
+            <h1><a href="../html_all/09/9-3.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/06/6-4.jpg">
+            <p>
+                劇名：月之戀人－步步驚心：麗<br>導演：金圭泰<br>編劇：趙允英<br>演員：李準基、李知恩、姜河那、洪宗玄、邊伯賢、金志洙、徐朱玄、南柱赫、尹善宇<br>劇情大綱：根據中國原創小說翻拍的同名電視劇《步步驚心》改編，講述生活在21世紀的女子高夏真（李知恩飾）某天為了解救意外落水的小男孩跳進湖中，結果溺水同時發生日全蝕現象，靈魂穿越到高麗王朝附身在少女解樹身上，和四皇子王昭（李準基飾）之間的浪漫愛情故事，以及高麗宮廷火熱的王權競爭。<br>
+            </p>
+            <h1><a href="../html_all/06/6-4.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/03/3-3.jpg">
+            <p>
+                劇名：漢娜的遺言<br>導演：凱爾·帕特里克·奧瓦內茲（第一季）、湯姆·麥卡錫、海倫·謝費（第二季）、麥克·莫里斯（第三季）<br>編劇：布萊恩·佑奇、黛安娜·孫（第1季)、湯姆·麥卡錫、喬伊·戈曼·威托斯、 史提夫·高林、邁克爾·蘇格、席琳娜·戈梅茲、曼蒂·提費、克莉絲朵·雷布林<br>演員：狄倫·明尼特、凱薩琳·蘭福德、克利斯汀·納瓦羅、艾莉莎·布爾、布蘭登·弗林<br>劇情大綱：一名青少年漢娜·貝克（凱薩琳·蘭福德 飾演）突然割腕自殺身亡後，讓親友們震驚不已，些許時日後，漢娜的朋友克雷·詹森（狄倫·明尼特 飾演）卻收到她死前錄製的一系列錄音帶，錄音內容是她親口揭露為何會選擇走上絕路，造就這場悲劇的十三個原因，而背後的黑暗秘密，也將逐漸攤在陽光下<br>
+            </p>
+            <h1><a href="../html_all/03/3-3.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/02/2-2.jpeg">
+            <p>
+                劇名：犀利人妻<br>導演：徐輔軍<br>編劇：楊海薇、王珮華<br>演員：隋棠、溫昇豪、朱芯儀、宥勝<br>劇情大綱：溫瑞凡（溫昇豪飾）與謝安真（隋棠飾）育有一女，婚姻原本是幸福美滿，卻因第三者的介入破壞了原有的幸福。瑞凡深深愛上了安真的遠房親戚薇恩。安真要如何面對她婚姻中這突如其來的改變？<br>
+            </p>
+            <h1><a href="../html_all/02/2-2.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/08/8-1.jpg">
+            <p>
+                劇名：紳探<br>導演：鄧科、高琮凱<br>編劇：陸宣、貢小白<br>演員：白宇、尤靖茹<br>劇情大綱：三十年代的上海，歌舞昇平、紙醉金迷，當人們沉醉在睡夢中的時候，一樁樁離奇的案件在城市的某個角落悄悄發生。剛從警校畢業的美麗女子秦小曼懷著成為一名出色警探的理想，來到英租界，住進了沙利文公寓，與屢破奇案、名聲大噪的警局探案顧問--神探羅非，成了鄰居和同事。開始兩個人性格不合，一見面就成了「冤家」，卻在陰差陽錯下不得不一起聯手破案。<br>
+            </p>
+            <h1><a href="../html_all/08/8-1.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/09/9-7.jpg">
+            <p>
+                劇名：怪奇物語<br>導演：艾莉森·塔特拉克<br>編劇：杜夫兄弟、肖恩·利維、丹·科恩、卡爾·加達賽克、辛蒂·荷蘭、麥特·陶諾爾、布萊恩·萊特<br>演員：薇諾娜·瑞德、大衛·哈伯、芬恩·沃夫哈德、米莉·芭比·布朗<br>劇情大綱：發生在1980年代，位於美國印第安納州的一座虛構城鎮霍金斯鎮（英語：Hawkins），鎮上的一座美國能源部名下的政府實驗室，涉及著跟超常現象跟超自然現象有關的機密實驗，當中還包含許多不為人知的人體實驗樣本。實驗人員在無意間開啟一條通往稱作「顛倒世界」（英語：Upside Down）的另一維度之傳送門，該維度所造成的危害隨著時間推及而波及到霍金斯鎮上的市民。<br>
+            </p>
+            <h1><a href="../html_all/09/9-7.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+
+        <div class="list_each">
+            <img src="../html_all/04/4-7.jpg">
+            <p>
+                劇名：必娶女人<br>導演：于中中<br>編劇：簡奇峯、林欣慧<br>演員：邱澤、柯佳嬿、曾之喬、張懷秋<br>劇情大綱：蔡環真（柯佳嬿飾）是個不論工作或是愛情都不擇手段、勢在必得的「必取」女人。在與反目成仇的高中閨密─郝勝男（曾之喬飾）狹路重逢後，蔡環真決心搶走郝勝男的男人─郝萌（邱澤飾）做為報復，殊不知郝萌其實是勝男情急之下抓來假扮男友的親哥哥！不甘心被環真欺騙的郝萌，決定將計就計，與環真展開了一場你來我往、勢均力敵的愛情攻防戰。<br>
+            </p>
+            <h1><a href="../html_all/04/4-7.html">
+                    more</a>
+            </h1>
+<!--
+            <div class="score">
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <img src="../images/favorite.png" />
+                <div class="collection">
+                    <img src="../images/heart.png" />
+                </div>
+            </div>
+-->
+        </div>
+        <!---------------------------------->
+
+        <!--
+        <div class="more_drama">
+            <hr><p>更多最新</p>
+            <img  id="list_left" src="../images/back.png"/>
+            <img/>
+            <img/>
+            <img/>
+            <img id="list_right" src="../images/next.png"/>
+        </div>
+-->
+        <!--<div class="flexslider carousel">
+            <ul class="slides">
+                <li>
+                    <img src="../images/201706191503484041_2016.jpg" />
+                </li>
+                <li>
+                    <img src="../images/maxresdefault.jpg" />
+                </li>
+                <li>
+                    <img src="../images/%E5%BB%B6%E7%A6%A7%E6%94%BB%E7%95%A5_%E9%9B%AA%E5%9C%B0%E7%89%88%E8%A6%96%E8%A6%BA.jpg" />
+                </li>
+                <li>
+                    <img src="../images/maxresdefault.jpg" />
+                </li>
+                items mirrored twice, total of 12
+            </ul>
+        </div>-->
+    </div>
+
+
+
+
+</body>
+
+</html>

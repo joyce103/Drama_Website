@@ -1,0 +1,265 @@
+@charset "utf-8";
+
+body{
+    background-color: #decdc7;
+}    
+a{
+    color:darkred;
+}
+a:hover{
+    color:lightblue;
+    
+}
+.collection {
+/*        height: 20px;*/
+         margin-top: 0px; 
+/*        width: 10vw;*/
+        padding-left: 40px;
+/*         float: left; */
+        float: left;
+    }
+
+    .collection img {
+/*         float: right; */
+        margin-left: 0px;
+        /* margin-top: 21vh; */
+        height: 20px;
+        width: 20px;
+    }
+    .drama_info {
+/*        border: 1px solid;*/
+        width: 97vw;
+/*        margin: 6px auto 0px auto;*/
+        height: 100vh;
+        /* text-align: center; */
+        /* float: inherit; */
+/*        background-color: #decdc7;*/
+    }
+
+    .drama_info h2 {
+        font-size: 40px;
+        text-align: center;
+        margin-bottom: 5px;
+        /* width: 70vw; */
+        /* margin: 10px auto; */
+        /* float: none; */
+    }
+
+    .drama_info hr {
+        width: 90vw;
+    }
+
+    .score {
+        /*    border: 1px solid;*/
+        height: 40px;
+        padding-left: 3vw;
+        position: absolute;
+        top: 13vh;
+        left: 57vw;
+        width: 350px;
+        margin-left: 70px;
+    }
+
+    .score img {
+        float: left;
+        height: 36px;
+        width: 36px;
+        /* margin-top: 21vh; */
+        margin-right: 1px;
+        margin-left: 10px;
+        /* margin-right: 20vw; */
+    }
+
+    .drama_pic {
+        width: 500px;
+        float: left;
+/*                border: 1px solid;*/
+        height: 400px;
+        margin-left: 8.5vw;
+        margin-top: 2vh;
+    }
+
+    .drama_intro {
+        width: 75vh;
+        float: right;
+/*        border: 1px solid;*/
+        margin-right: 10vw;
+        height: 60vh;
+        margin-top: 2vh;
+/*        background-color: #decdc7;*/
+    }
+
+    .drama_intro p {
+        margin-left: 1vw;
+    }
+
+    .drama_pic img {
+        border: 1px;
+        margin-right: 10px;
+        width: 100%;
+  height: 100%;
+  object-fit: cover;
+/*
+        width: 42vh;
+        height: 60vh;
+*/
+    }
+
+    .drama_source {
+        /*        border: 1px solid #6a6a6a;*/
+        float: left;
+        width: 97vw;
+        height: 60vh;
+        background-color: #decdc7;
+    }
+
+    .drama_source hr {
+        margin-top: 2vh;
+        width: 90vw;
+        
+    }
+
+    .source_title {
+/*        border: 2px solid #5c5c5c;*/
+        width: 25vh;
+        height: 7vh;
+        text-align: center;
+        margin: 10px auto;
+        background-color: #98857e;
+        border-radius: 15px;
+    }
+
+    .source_title p {
+        font-size: 24px;
+        margin-top: 30px;
+        text-align: center;
+        color: #f4ebe7;
+    }
+
+    .source_name {
+/*        border: 1px solid;*/
+        width: 27vh;
+        height: 12vh;
+        text-align: center;
+        float: left;
+        margin-left: 12.5vw;
+        margin-top: 5vh;
+        margin-bottom: 2vh;
+    }
+    .source_name p{
+        font-size: 22px;
+        margin-bottom: 0px;
+    }
+    .source_name h3{
+        font-size: 16px;
+        font-family:fantasy;
+    color: red;
+    }
+    .source_name_b {
+/*        border: 1px solid;*/
+        width: 27vh;
+        height: 12vh;
+        text-align: center;
+        float: left;
+        margin-left: 22vw;
+        margin-top: 5vh;
+        margin-bottom: 2vh;
+    }
+.source_name_b p{
+        font-size: 22px;
+        margin-bottom: 0px;
+    }
+    .source_name_b h3{
+        font-size: 16px;
+        font-family:fantasy;
+    color: red;
+    }
+    .drama_comment{
+/*        border: 1px solid;*/
+        float: left;
+        width: 97vw;
+        height: 100vh;
+        
+/*        background-color: #decdc7;*/
+    }
+    .drama_comment p{
+        font-size: 30px;
+        text-align: center;
+    }
+    .comment_border{
+        border: 2px solid;
+        width: 60vw;
+        height: 60vh;
+        margin-left: 18.5vw;
+        overflow: auto;
+        background-color:#ebe1dd; 
+    }
+    #comment_user{
+        margin-top: 4px;
+     width: 40px;
+        height: 40px;
+        margin-left: 1vw;
+        float: left;
+    }
+    .comment_member p{
+        color: #5f2517;
+        font-size: 15px;
+        text-align: left;
+        margin-left: 1vw;
+        margin-bottom: 0px;
+    }
+    .comment_member{
+        width: 54vw;
+        height:70px;
+        border-right: 1px solid;
+    }
+    .comment_border hr{
+        width: 60vw;
+        border: 1px solid;
+    }
+    .comment_area{
+        width: 60vw;
+        height: 20vh;
+        border: 2px solid;
+        margin-left: 18.5vw;
+        background-color:#ebe1dd; 
+    }
+    #comment_star{
+        width: 40px;
+        height: 40px;
+        float: right;
+        
+    }
+    .comment{
+        margin-bottom:10px; 
+    }
+    .comment_star{
+        
+    }
+    .starshine{
+        display: none;
+    }
+    #ta{
+        width:600px;
+        height: 100px;
+        margin-top: 15px;
+        margin-bottom:10px : 
+        float: left;
+    }
+    .taa{
+        float: left;
+        margin:10px;
+    }
+    #submit{
+        margin: 10px;
+        float: right;
+    }
+    .comment_text{
+        float: left;
+        margin-left:10px;
+        margin-right:10px;
+        margin-bottom:10px;
+        width:580px;
+        word-break: break-all;
+    }
+    
